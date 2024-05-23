@@ -13,41 +13,42 @@
 	} from 'firebase/firestore';
 	import { db } from '$lib/firebase';
 
-	type Item = {
+	type User = {
 		id?: string;
 		name: string;
 		timestamp: FieldValue;
+        score?: number;
 	};
 
-	let itemName: string = '';
-	let wishList: Item[] = [];
+	let userName: string = '';
+    let ranking: User[] = [];
 
-	function addItem() {
-		if (itemName == '') return;
-		const item: Item = {
-			name: itemName,
+	function addUser() {
+		if (userName == '') return;
+		const ranking: User = {
+			name: userName,
 			timestamp: serverTimestamp()
 		};
-		addDoc(collection(db, 'wishlist'), item);
-		itemName = '';
+		addDoc(collection(db, 'ranking'), ranking);
+		userName = '';
 	}
 
-	function delItem(item: Item) {
-		if (!item.id) return;
-		deleteDoc(doc(db, 'wishlist', item.id));
+	function delUser(user: User) {
+		if (!user.id) return;
+		deleteDoc(doc(db, 'ranking', user.id));
 	}
 
 	onSnapshot(
-		query(collection(db, 'wishlist'), orderBy('timestamp', 'desc')),
+		query(collection(db, 'ranking'), orderBy('timestamp', 'desc')),
 		(snapshot: QuerySnapshot): any => {
-			wishList = snapshot.docs.map((doc) => {
+			ranking = snapshot.docs.map((doc) => {
 				const data = doc.data();
-				const item: Item = {
+				const user: User = {
 					id: doc.id,
 					name: data.name,
 					timestamp: data.timestamp
 				};
-				return item;
+				return user;
 			});
 		}
 	);
@@ -57,14 +58,14 @@
 	<div>
 		<h1>✅ Wish List</h1>
 		<div>
-			<input type="text" bind:value={itemName} />
-			<button on:click={addItem}>Add Item</button>
+			<input type="text" bind:value={userName} />
+			<button on:click={addUser}>Add Item</button>
 		</div>
 		<ul>
-			{#each wishList as item}
+			{#each ranking as user}
 				<li>
-					<p><span>✔</span><span>{item.name}</span></p>
-					<button on:click={() => delItem(item)}>🗑️</button>
+					<p><span>✔</span><span>{user.name}</span></p>
+					<button on:click={() => delUser(user)}>🗑️</button>
 				</li>
 			{/each}
 		</ul>
