@@ -5,6 +5,7 @@
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
+		"firebase": "firebase",
 		"preview": "vite preview",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json --watch",
@@ -28,6 +29,8 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"firebase": "^10.12.1"
+		"dotenv": "^16.4.5",
+		"firebase": "^10.12.1",
+		"firebase-tools": "^13.10.0"
 	}
 }
