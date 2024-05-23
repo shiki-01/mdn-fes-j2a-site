@@ -31,6 +31,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@sveltejs/adapter-static": "^3.0.1",
 		"dotenv": "^16.4.5",
 		"firebase": "^10.12.1",
 		"firebase-tools": "^13.10.0"
