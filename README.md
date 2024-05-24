@@ -75,3 +75,36 @@ body {
 と書くことができます。
 
 こうすることで、コードの可読性や重複部分の省略が行えます。
+
+svelte では、ファイルの終わりに `<style lang=scss></scss>` と書いて、中にスタイルを書きます。
+
+### svelte におけるルーティングについて
+
+html では、
+```
+Page
+┣ index.html
+┣ index.css
+┣ About.html
+┗ pages
+  ┣ page1.html
+  ┗ page2.html
+```
+
+と書くことで、 `Page/index.html` や `Page/pages/page2.html` というふうになりました。
+
+svelte では、ファイル名そのものがルーティング（ リンクの構造 ）となります。
+
+例えば
+```
+Page
+┣ +page.svelte
+┣ About
+┃ ┗ +page.svelte
+┗ Pages
+  ┗ +page.svelte
+```
+
+というふうにファイルを配置します。すると、 `/` というリンクが `Page/+page.svelte` というリンクになり、 `/Pages`　というリンクが `Page/Pages/+page.svelte` のリンクとなります。
+
+こうすることで、ルーティングを単純かつ拡張性の高いものとし、複雑な状況にも対応できるようになります。
