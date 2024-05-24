@@ -16,7 +16,7 @@ UI フレームワークとは、見た目などのデザインをあらかじ�
 
 ### TypeScript について
 
-このプロジェクトでは TypeScript + Firebaseをメインのバックエンドとして開発しています。
+このプロジェクトでは TypeScript + Firebase をメインのバックエンドとして開発しています。
 
 TypeScript は、基本的には JavaScript と一緒ですが、型保全ががっちりした言語です。きちんと設計すればエラーが起きにくいため、ほとんどの場合は JavaScript ではなく TypeScript を使うことが多いです。
 
