@@ -33,7 +33,7 @@ svelte では、ファイルの初めに `<script lang='ts'></script>` と書い
 
 ### scss について
 
-scss とは、CSS のための簡略に書くためのものです。
+scss とは、CSS を簡略に書くためのものです。
 
 ```html
 <body>
