@@ -56,7 +56,7 @@
 
 <section>
 	<div>
-		<h1>✅ Wish List</h1>
+		<h1>✅ ランキング</h1>
 		<div>
 			<input type="text" bind:value={userName} />
 			<button on:click={addUser}>Add Item</button>
