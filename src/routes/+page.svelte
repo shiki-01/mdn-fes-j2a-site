@@ -39,22 +39,22 @@
 	}
 
 	onSnapshot(
-		query(collection(db, 'ranking'), orderBy('timestamp', 'desc')),
-		(snapshot: QuerySnapshot): any => {
+		query(collection(db, 'ranking'), orderBy('timestamp')),
+		(snapshot: QuerySnapshot) => {
 			ranking = snapshot.docs.map((doc) => {
 				const data = doc.data();
-				const user: User = {
+				
+				return {
 					id: doc.id,
 					name: data.name,
 					timestamp: data.timestamp
 				};
-				return user;
 			});
 		}
 	);
 </script>
 
-<section>
+<section class="container w-fit">
 	<div>
 		<h1>✅ ランキング</h1>
 		<div>
