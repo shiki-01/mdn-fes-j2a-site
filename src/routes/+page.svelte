@@ -17,11 +17,11 @@
 		id?: string;
 		name: string;
 		timestamp: FieldValue;
-        score?: number;
+		score?: number;
 	};
 
 	let userName: string = '';
-    let ranking: User[] = [];
+	let ranking: User[] = [];
 
 	function addUser() {
 		if (userName == '') return;
@@ -43,7 +43,7 @@
 		(snapshot: QuerySnapshot) => {
 			ranking = snapshot.docs.map((doc) => {
 				const data = doc.data();
-				
+
 				return {
 					id: doc.id,
 					name: data.name,
