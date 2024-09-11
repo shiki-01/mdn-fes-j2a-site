@@ -1,25 +1,63 @@
-<script>
+<script lang="ts">
 	import '../app.css';
-	import { Navbar, NavBrand, NavLi, NavUl, NavHamburger } from 'flowbite-svelte';
+	import { Navbar, NavBrand, NavUl, NavHamburger } from 'flowbite-svelte';
+	import { Footer, FooterBrand, FooterCopyright, FooterIcon, FooterLink, FooterLinkGroup } from 'flowbite-svelte';
+	import { scrollTo, scrollTop } from 'svelte-scrolling'
 </script>
 
-<div>
-	<Navbar>
-		<NavBrand href="/">
-			<img src="https://placehold.jp/300x150.png" class="me-3 h-6 sm:h-9" alt="Flowbite Logo" />
-			<span class="self-center whitespace-nowrap text-xl font-semibold dark:text-white"
-				>Flowbite</span
+<div class="w-screen h-screen">
+	<Navbar class="w-full h-[70px] fixed top-0">
+		<NavBrand href="#page">
+			<button on:click={() => scrollTop()}>
+			    <img src="https://placehold.jp/300x150.png" class="me-3 h-6 sm:h-9" alt="Logo" />
+			</button>
+			<button class="self-center whitespace-nowrap text-xl font-semibold dark:text-white"
+			    on:click={() => scrollTop()}
+				>辰巳のアストロブラスター</button
 			>
 		</NavBrand>
 		<NavHamburger></NavHamburger>
 		<NavUl>
-			<NavLi href="/">Home</NavLi>
-			<NavLi href="/rule">Rule</NavLi>
-			<NavLi href="/scoreboard">ScoreBoard</NavLi>
-			<NavLi href="/access">Access</NavLi>
+			<a use:scrollTo={'home'} href="#home">
+				Home
+			</a>
+			<a use:scrollTo={'about'} href="#about">
+				About
+			</a>
+		    <a use:scrollTo={'scoreboard'} href="#scoreboard">
+				ScoreBoard
+			</a>
+			<a use:scrollTo={'access'} href="#access">
+				Access
+			</a>
 		</NavUl>
 	</Navbar>
-	<slot></slot>
+	<div class="pt-[70px] w-full">
+		<slot />
+	</div>
+	<Footer footerType="logo">
+		<div class="sm:flex sm:items-center sm:justify-between">
+			<button on:click={() => scrollTop()}>
+			    <FooterBrand href="#" src="https://placehold.jp/300x150.png" alt="Logo" name="辰巳のアストロブラスター" />
+			</button>
+			<FooterLinkGroup ulClass="flex flex-wrap gap-5 items-center mb-6 text-sm text-gray-500 sm:mb-0 dark:text-gray-400">
+				<a use:scrollTo={'home'} href="#home">
+					Home
+				</a>
+			    <a use:scrollTo={'about'} href="#about">
+				    About
+			    </a>
+			    <a use:scrollTo={'scoreboard'} href="#scoreboard">
+				    ScoreBoard
+			    </a>
+				<a use:scrollTo={'access'} href="#access">
+					Access
+				</a>
+			</FooterLinkGroup>
+		  </div>
+		  <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+		  <FooterCopyright by="@tatsumi" />
+	</Footer>
 </div>
 
 <style></style>

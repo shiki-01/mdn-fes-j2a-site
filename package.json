@@ -46,6 +46,7 @@
 		"dotenv": "^16.4.5",
 		"firebase": "^10.12.1",
 		"firebase-tools": "^13.10.0",
+		"svelte-scrolling": "^1.4.0",
 		"tailwind-merge": "^2.3.0",
 		"tailwind-variants": "^0.2.1"
 	}
