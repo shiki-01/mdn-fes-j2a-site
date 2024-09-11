@@ -1,12 +1,12 @@
 <script lang="ts">
 	import '../app.css';
 	import { Navbar, NavBrand, NavUl, NavHamburger } from 'flowbite-svelte';
-	import { Footer, FooterBrand, FooterCopyright, FooterIcon, FooterLink, FooterLinkGroup } from 'flowbite-svelte';
+	import { Footer, FooterBrand, FooterCopyright, FooterLinkGroup } from 'flowbite-svelte';
 	import { scrollTo, scrollTop } from 'svelte-scrolling'
 </script>
 
-<div class="w-screen h-screen">
-	<Navbar class="w-full h-[70px] fixed top-0">
+<div class="main relative overflow-hidden">
+	<Navbar class="w-full h-[60px] lg:h-[70px] fixed top-0 z-[99]">
 		<NavBrand href="#page">
 			<button on:click={() => scrollTop()}>
 			    <img src="https://placehold.jp/300x150.png" class="me-3 h-6 sm:h-9" alt="Logo" />
@@ -32,10 +32,10 @@
 			</a>
 		</NavUl>
 	</Navbar>
-	<div class="pt-[70px] w-full">
+	<div class="main pt-[60px] lg:pt-[70px] w-full">
 		<slot />
 	</div>
-	<Footer footerType="logo">
+	<Footer footerType="logo" class="dark">
 		<div class="sm:flex sm:items-center sm:justify-between">
 			<button on:click={() => scrollTop()}>
 			    <FooterBrand href="#" src="https://placehold.jp/300x150.png" alt="Logo" name="辰巳のアストロブラスター" />
@@ -60,4 +60,8 @@
 	</Footer>
 </div>
 
-<style></style>
+<style>
+	.main {
+      background-image: linear-gradient(0deg, rgb(20, 73, 117), rgb(115, 255, 255))
+	}
+</style>
