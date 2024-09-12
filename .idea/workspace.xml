@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ff93c017-30b8-4e23-823d-c6e60d8a0ba1" name="変更" comment="savaa">
+    <list default="true" id="ff93c017-30b8-4e23-823d-c6e60d8a0ba1" name="変更" comment="sava">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/svelte.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/svelte.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/+layout.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/+layout.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/+page.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/+page.svelte" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,7 +105,7 @@
       <workItem from="1725978863646" duration="1347000" />
       <workItem from="1726057347247" duration="6262000" />
       <workItem from="1726142472717" duration="3976000" />
-      <workItem from="1726148666587" duration="4754000" />
+      <workItem from="1726148666587" duration="5020000" />
     </task>
     <task id="LOCAL-00001" summary="sava">
       <option name="closed" value="true" />
@@ -138,7 +139,15 @@
       <option name="project" value="LOCAL" />
       <updated>1726156468208</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="sava">
+      <option name="closed" value="true" />
+      <created>1726156735935</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1726156735935</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -147,8 +156,8 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="sava" />
     <MESSAGE value="savaa" />
-    <option name="LAST_COMMIT_MESSAGE" value="savaa" />
+    <MESSAGE value="sava" />
+    <option name="LAST_COMMIT_MESSAGE" value="sava" />
   </component>
 </project>
