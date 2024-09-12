@@ -15,87 +15,99 @@
 	const points = [
 		{
 			name: 'neko',
-			top: '10%',
-			left: '10%',
-			size: '20%',
-			rate: 0.7
+			top: '8.3%',
+			left: '65%',
+			size: '30%',
+			rate: 0.0,
+			rotate: 90
 		},
 		{
 			name: 'switch',
-			top: '20%',
-			left: '20%',
-			size: '40%',
-			rate: 0.5
+			top: '27.5%',
+			left: '25%',
+			size: '50%',
+			rate: 0.0,
+			rotate: 90
 		},
 		{
 			name: 'gun',
-			top: '30%',
-			left: '30%',
-			size: '50%',
-			rate: 0.9
+			top: '5%',
+			left: '0%',
+			size: '100%',
+			rate: 0.9,
+			rotate: 100
 		},
 		{
 			name: 'pen-case',
 			top: '40%',
-			left: '40%',
-			size: '40%',
-			rate: 0.2
+			left: '2%',
+			size: '100%',
+			rate: 0.2,
+			rotate: 90
 		},
 		{
 			name: 'textbook',
-			top: '50%',
-			left: '20%',
-			size: '40%',
-			rate: 0.4
+			top: '1%',
+			left: '5%',
+			size: '80%',
+			rate: 0.4,
+			rotate: 90
 		},
 		{
 			name: 'basketball',
-			top: '60%',
+			top: '18%',
 			left: '10%',
-			size: '50%',
-			rate: 0.6
+			size: '140%',
+			rate: 0.6,
+			rotate: 90
 		},
 		{
 			name: 'lunch-box',
-			top: '70%',
-			left: '20%',
-			size: '50%',
-			rate: 0.3
+			top: '18.5%',
+			left: '-20%',
+			size: '100%',
+			rate: 0.3,
+			rotate: 90
 		},
 		{
 			name: 'blackboard',
 			top: '80%',
 			left: '50%',
 			size: '50%',
-			rate: 0.7
+			rate: 0.7,
+			rotate: 90
 		},
 		{
 			name: 'ribbon',
-			top: '40%',
+			top: '17%',
 			left: '60%',
 			size: '50%',
-			rate: 0.5
+			rate: 0.0,
+			rotate: 90
 		},
 		{
 			name: 'neck-tie',
-			top: '10%',
-			left: '10%',
-			size: '40%',
-			rate: 0.9
+			top: '17%',
+			left: '-8%',
+			size: '50%',
+			rate: 0.0,
+			rotate: 90
 		},
 		{
 			name: 'eraser',
-			top: '10%',
-			left: '10%',
+			top: '3%',
+			left: '40%',
 			size: '50%',
-			rate: 0.3
+			rate: 0.3,
+			rotate: 90
 		},
 		{
 			name: 'pencil',
-			top: '5%',
-			left: '10%',
+			top: '3%',
+			left: '60%',
 			size: '50%',
-			rate: 0.5
+			rate: 0.5,
+			rotate: 90
 		}
 	];
 
@@ -125,7 +137,7 @@
 	<Parallax sections={points.length} config={{stiffness: 0.2, damping: 0.9}}>
 		{#each Object.entries(images) as [path, src], i}
 			<ParallaxLayer rate={points[i].rate} class="absolute"
-										 style="top: {points[i].top}; left: {points[i].left}; width: {points[i].size}; height: {points[i].size};">
+										 style="top: {points[i].top}; left: {points[i].left}; width: {points[i].size}; height: {points[i].size}; transform:rotate({points[i].rotate}deg)">
 				<img src={src.default} alt={path} />
 			</ParallaxLayer>
 		{/each}
