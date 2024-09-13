@@ -41,6 +41,7 @@
 	"type": "module",
 	"dependencies": {
 		"@eslint/js": "^9.10.0",
+		"@fontsource/zen-kurenaido": "^5.1.0",
 		"@sveltejs/adapter-cloudflare": "^4.7.2",
 		"clsx": "^2.1.1",
 		"firebase": "^10.13.1",
