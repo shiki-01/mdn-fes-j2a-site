@@ -5,12 +5,14 @@
 		query,
 		QuerySnapshot,
 		FieldValue,
-		orderBy
+		orderBy,
+		getDocs
 	} from 'firebase/firestore';
 	import { db } from '$lib/firebase';
 	import { Parallax, ParallaxLayer } from 'svelte-parallax';
 	import { scrollRef } from 'svelte-scrolling';
 	import images from '$lib/img';
+	import { onMount } from 'svelte';
 
 	const points = [
 		{
@@ -120,24 +122,41 @@
 
 	let ranking: User[] = [];
 
-	onSnapshot(query(collection(db, 'ranking'), orderBy('timestamp')), (snapshot: QuerySnapshot) => {
+	onSnapshot(query(collection(db, 'ranking'), orderBy('score')), (snapshot: QuerySnapshot) => {
 		ranking = snapshot.docs.map((doc) => {
 			const data = doc.data();
 
 			return {
 				id: doc.id,
 				name: data.name,
-				timestamp: data.timestamp
+				timestamp: data.timestamp,
+				score: data.score
 			};
 		});
 	});
+
+	onMount(async () => {
+		const ranks = await getDocs(collection(db, 'ranking'))
+		ranks.forEach((doc) => {
+		    const data = doc.data()
+			ranking.push({
+				id: doc.id,
+				name: data.name,
+				timestamp: data.timestamp,
+				score: data.score
+			})
+		})
+	})
 </script>
 
 <div class="absolute top-0 left-0 w-full h-full pointer-events-none z-[1]">
 	<Parallax sections={points.length} config={{stiffness: 0.2, damping: 0.9}}>
 		{#each Object.entries(images) as [path, src], i}
-			<ParallaxLayer rate={points[i].rate} class="absolute"
-										 style="top: {points[i].top}%; left: {points[i].left}%; width: {points[i].size}%; height: {points[i].size}%; rotate: {points[i].rotate}deg;">
+			<ParallaxLayer 
+			    rate={points[i].rate}
+				class="absolute"
+				style="top: {points[i].top}%; left: {points[i].left}%; width: {points[i].size}%; height: {points[i].size}%; rotate: {points[i].rotate}deg;"
+			>
 				<img src={src.default} alt={path} />
 			</ParallaxLayer>
 		{/each}
@@ -175,10 +194,11 @@
 				ScoreBoard
 			</h1>
 			{#if ranking}
+			{JSON.stringify(ranking)}
 				<div class="flex flex-col max-w-xl gap-4">
 					{#each [0, 1, 2] as i}
 						<div class="flex flex-row justify-between">
-							<p>{ranking[i]?.name || "Error"} さん</p>
+							<p>{ranking[i]?.name} さん</p>
 							<p>{ranking[i]?.score || "Error"} pt</p>
 						</div>
 					{/each}
