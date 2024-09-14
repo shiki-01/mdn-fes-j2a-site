@@ -355,7 +355,6 @@
 				ScoreBoard
 			</h1>
 			{#if ranking}
-				{JSON.stringify(ranking)}
 				<div class="flex flex-col max-w-xl gap-4">
 					{#each [0, 1, 2] as i}
 						<div class="flex flex-row justify-between">
