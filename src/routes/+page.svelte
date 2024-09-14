@@ -47,7 +47,7 @@
 		},
 		{
 			name: 'pen-case',
-			top: '42',
+			top: '43',
 			left: '60',
 			size: '40',
 			rate: 0.2,
@@ -74,7 +74,7 @@
 		},
 		{
 			name: 'lunch-box',
-			top: '49',
+			top: '50',
 			left: '-10',
 			size: '60',
 			rate: 0.4,
@@ -365,8 +365,11 @@
 			<h1 use:scrollRef={'access'} class="text-4xl text-center pb-10 pt-[80px]">
 				Access
 			</h1>
-			<div class="w-full p-5 flex justify-center items-center">
+			<div class="w-full p-2 flex flex-col gap-6 justify-center items-center">
 				<img src={map} alt="map">
+				<p class="text-lg font-bold text-center">
+					3階 304教室・J2A にて君を待つ！
+				</p>
 			</div>
 		</div>
 	</div>
