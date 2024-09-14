@@ -58,14 +58,5 @@ export  class MovePosition {
 				MovePosition.layer_4.style.transform = `translate(${x / 6}px, ${y / 6}px)`;
 			}, 400);
 		})
-
-
-
-		const setYDom = document.getElementById('setY') as HTMLElement;
-		setYDom.textContent = 'Y: '+y+'px';
-
-		const setXDom = document.getElementById('setX') as HTMLElement;
-		setXDom.textContent = 'X: '+x+'px';
-
 	}
 }
