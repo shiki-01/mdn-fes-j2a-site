@@ -12,7 +12,7 @@
 			<button on:click={() => scrollTop()}>
 				<img src="https://placehold.jp/300x150.png" class="me-3 h-6 sm:h-9" alt="Logo" />
 			</button>
-			<button class="self-center whitespace-nowrap text-xl font-semibold dark:text-white"
+			<button class="self-center whitespace-nowrap text-lg md:text-lg font-semibold dark:text-white"
 							on:click={() => scrollTop()}
 			>辰巳のアストロブラスター
 			</button

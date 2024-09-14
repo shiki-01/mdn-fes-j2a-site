@@ -44,6 +44,7 @@
 		"@fontsource/zen-kurenaido": "^5.1.0",
 		"@sveltejs/adapter-cloudflare": "^4.7.2",
 		"clsx": "^2.1.1",
+		"detect-device-orientation": "^0.2.1",
 		"firebase": "^10.13.1",
 		"firebase-tools": "^13.17.0",
 		"saos": "^1.3.1",

@@ -9,8 +9,8 @@
 		getDocs
 	} from 'firebase/firestore';
 	import { db } from '$lib/firebase';
-	import { MovePosition } from '$lib/MovePosition';
 	import { Parallax, ParallaxLayer } from 'svelte-parallax';
+	import { DetectDeviceOrientation, type Orientation } from 'detect-device-orientation';
 	import { scrollRef } from 'svelte-scrolling';
 	import images, { mains } from '$lib/img';
 	import pr from '$lib/img/pr.mp4';
@@ -142,21 +142,21 @@
 
 	const mainp: MainP = {
 		boy: {
-			top: '7',
+			top: '7%',
 			left: '55',
 			size: '110',
 			rate: 0.1,
 			rotate: 0
 		},
 		girl: {
-			top: '7',
+			top: '7%',
 			left: '55',
 			size: '110',
 			rate: 0.1,
 			rotate: 0
 		},
 		mato: {
-			top: '7',
+			top: '7%',
 			left: '55',
 			size: '110',
 			rate: 0.1,
@@ -164,15 +164,13 @@
 		},
 
 		title: {
-			top: '0',
+			top: '-2%',
 			left: '48',
 			size: '100',
 			rate: 0.1,
 			rotate: 0
 		}
 	};
-
-	let visible = true;
 
 	type Animation = {
 		(node: HTMLElement, value: number): void,
@@ -214,25 +212,6 @@
 		node.style.transform = `translate(-50%, ${(1 - value) * 500}px)`;
 	};
 
-	const smart = (e: DeviceOrientationEvent) => {
-		let alpha = e.alpha;
-		let beta = e.beta;
-		let gamma = e.gamma;
-
-		const movePosition = new MovePosition(alpha, beta, gamma);
-		movePosition.setImgPosition();
-	};
-
-	let time = 0;
-	let duration: number = 20;
-
-	let scrollY = 0;
-
-	$: {
-		const total = document.documentElement.scrollHeight - window.innerHeight;
-		time = duration * (scrollY / total);
-	}
-
 	type User = {
 		id?: string;
 		name: string;
@@ -255,6 +234,36 @@
 		});
 	});
 
+	let imageX = 0;
+	let imageY = 0;
+
+	if (typeof window != 'undefined') {
+		const width = window.innerWidth;
+
+		if (width < 768) {
+			let detectDeviceOrientation = new DetectDeviceOrientation();
+
+			detectDeviceOrientation.init((orientation: Orientation) => {
+				if (typeof document === 'undefined') return;
+				imageX = orientation.gamma;
+				imageY = orientation.beta;
+
+				const imageIDs = ['boy', 'girl', 'mato', 'title'];
+				imageIDs.forEach((id) => {
+					const image = document.getElementById(id);
+					if (!image) return;
+					const z = parseInt(image.getAttribute('data-z') || '0');
+					const img = image.querySelector('img');
+					if (!z || !img) return;
+					const oldX = parseInt(image.style.left);
+					const oldY = parseInt(image.style.top);
+					if (!oldX || !oldY) return;
+					img.style.transform = `transform(${(oldX - imageX) * z}px, ${(oldY - imageY) * z}px)`;
+				});
+			});
+		}
+	}
+
 	onMount(async () => {
 		const ranks = await getDocs(collection(db, 'ranking'));
 		ranks.forEach((doc) => {
@@ -269,8 +278,6 @@
 	});
 </script>
 
-<svelte:window on:deviceorientation={smart} bind:scrollY />
-
 <div class="absolute top-0 left-0 w-full h-full pointer-events-none z-20">
 	<Parallax sections={points.length} config={{stiffness: 0.2, damping: 0.9}}>
 		{#each Object.entries(images) as [path, src], i}
@@ -279,7 +286,8 @@
 				class="absolute z-10"
 				style="top: {points[i].top}%; left: {points[i].left}%; width: {points[i].size}%; height: {points[i].size}%;"
 			>
-				<img src={src.default} alt={path} style="{points[i].turn ? 'transform: scale(-1, 1);' : ''} rotate: {points[i].rotate}deg;" />
+				<img src={src.default} alt={path}
+						 style="{points[i].turn ? 'transform: scale(-1, 1);' : ''} rotate: {points[i].rotate}deg;" />
 			</ParallaxLayer>
 		{/each}
 	</Parallax>
@@ -288,20 +296,19 @@
 <section class="w-full">
 	<div class="h-[calc(100svh-60px)] lg:h-[calc(100svh-70px)] relative overflow-hidden w-full bg-sky-200 z-10">
 		{#each Object.entries(mainp) as [key],i (key)}
-			{#if visible}
-				<div
-					use:tween={{ animation: fly, duration: 1000, delay: 100 * i }}
-					class="absolute object-cover w-full h-full"
-					style="transform: translate(-50%, 0%); top: {mainp[key].top}%; left: {mainp[key].left}%; scale: {mainp[key].size}%; rotate: {mainp[key].rotate}deg;"
-				>
-					<img
-						id={key}
-						class="z-[2]"
-						src={mains[key]}
-						alt={key}
-					/>
-				</div>
-			{/if}
+			<div
+				id={key}
+				data-z={i}
+				use:tween={{ animation: fly, duration: 1000, delay: 100 * i }}
+				class="absolute w-full h-auto pt-[calc(100svh-(100%/sqrt(2))-105%)]"
+				style="transform: translate(-50%, 0%); top: {mainp[key].top}; left: {mainp[key].left}%; scale: {mainp[key].size}%; rotate: {mainp[key].rotate}deg;"
+			>
+				<img
+					class="z-[2]"
+					src={mains[key]}
+					alt={key}
+				/>
+			</div>
 		{/each}
 	</div>
 	<div class="h-full w-full relative">
@@ -332,7 +339,8 @@
 					<video
 						class="object-cover"
 						src={pr}
-						bind:currentTime={time}
+						autoplay
+						loop
 						muted
 						playsinline
 					/>
