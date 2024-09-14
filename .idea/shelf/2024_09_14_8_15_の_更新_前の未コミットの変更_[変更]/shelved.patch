@@ -1,0 +1,137 @@
+Index: src/lib/img/index.ts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>const images: Record<string, { default: string }> = import.meta.glob('./*.png', { eager: true });\n\nexport default images;
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/lib/img/index.ts b/src/lib/img/index.ts
+--- a/src/lib/img/index.ts	(revision acc5496274dfec867b27e4e6163dcf3b7514116b)
++++ b/src/lib/img/index.ts	(date 1726269340434)
+@@ -1,3 +1,3 @@
+-const images: Record<string, { default: string }> = import.meta.glob('./*.png', { eager: true });
++const images: Record<string, { default: string }> = import.meta.glob('./back/*.png', { eager: true });
+ 
+ export default images;
+\ No newline at end of file
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"AutoImportSettings\">\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\n  </component>\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"ff93c017-30b8-4e23-823d-c6e60d8a0ba1\" name=\"変更\" comment=\"deploy\">\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/app.html\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/app.html\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/routes/+page.svelte\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/routes/+page.svelte\" afterDir=\"false\" />\n    </list>\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"FileTemplateManagerImpl\">\n    <option name=\"RECENT_TEMPLATES\">\n      <list>\n        <option value=\"+layout\" />\n        <option value=\"TypeScript File\" />\n      </list>\n    </option>\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n  </component>\n  <component name=\"GitHubPullRequestSearchHistory\">{\n  &quot;lastFilter&quot;: {\n    &quot;state&quot;: &quot;OPEN&quot;,\n    &quot;assignee&quot;: &quot;shiki-01&quot;\n  }\n}</component>\n  <component name=\"GithubPullRequestsUISettings\">{\n  &quot;selectedUrlAndAccountId&quot;: {\n    &quot;url&quot;: &quot;https://github.com/shiki-01/mdn-fes-j2a-site.git&quot;,\n    &quot;accountId&quot;: &quot;471ae28e-56b8-40a4-b332-b1a44804dc5c&quot;\n  }\n}</component>\n  <component name=\"ProjectColorInfo\">{\n  &quot;associatedIndex&quot;: 3\n}</component>\n  <component name=\"ProjectId\" id=\"2lspukC2l8yZO5LwCrdOHmdDRp0\" />\n  <component name=\"ProjectLevelVcsManager\">\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\n  </component>\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\"><![CDATA[{\n  \"keyToString\": {\n    \"ASKED_MARK_IGNORED_FILES_AS_EXCLUDED\": \"true\",\n    \"ASKED_SHARE_PROJECT_CONFIGURATION_FILES\": \"true\",\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\n    \"SHARE_PROJECT_CONFIGURATION_FILES\": \"true\",\n    \"git-widget-placeholder\": \"main\",\n    \"last_opened_file_path\": \"/home/shiki-01/WebstormProjects/mdn-fes-j2a-site/src/lib/img\",\n    \"node.js.detected.package.eslint\": \"true\",\n    \"node.js.detected.package.tslint\": \"true\",\n    \"node.js.selected.package.eslint\": \"(autodetect)\",\n    \"node.js.selected.package.tslint\": \"(autodetect)\",\n    \"nodejs_package_manager_path\": \"npm\",\n    \"npm.dev.executor\": \"Run\",\n    \"prettierjs.PrettierConfiguration.Package\": \"/home/shiki-01/WebstormProjects/mdn-fes-j2a-site/node_modules/prettier\",\n    \"run.code.analysis.last.selected.profile\": \"pProject Default\",\n    \"settings.editor.selected.configurable\": \"preferences.pluginManager\",\n    \"ts.external.directory.path\": \"/home/shiki-01/WebstormProjects/mdn-fes-j2a-site/node_modules/typescript/lib\",\n    \"vue.rearranger.settings.migration\": \"true\"\n  }\n}]]></component>\n  <component name=\"RecentsManager\">\n    <key name=\"CopyFile.RECENT_KEYS\">\n      <recent name=\"$PROJECT_DIR$/src/lib/img\" />\n    </key>\n  </component>\n  <component name=\"RunManager\">\n    <configuration name=\"dev\" type=\"js.build_tools.npm\" nameIsGenerated=\"true\">\n      <package-json value=\"$PROJECT_DIR$/package.json\" />\n      <command value=\"run\" />\n      <scripts>\n        <script value=\"dev\" />\n      </scripts>\n      <node-interpreter value=\"project\" />\n      <envs />\n      <method v=\"2\" />\n    </configuration>\n  </component>\n  <component name=\"SharedIndexes\">\n    <attachedChunks>\n      <set>\n        <option value=\"bundled-js-predefined-d6986cc7102b-7c0b70fcd90d-JavaScript-WS-242.21829.149\" />\n      </set>\n    </attachedChunks>\n  </component>\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"アプリケーションレベル\" UseSingleDictionary=\"true\" transferred=\"true\" />\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"デフォルトタスク\">\n      <changelist id=\"ff93c017-30b8-4e23-823d-c6e60d8a0ba1\" name=\"変更\" comment=\"\" />\n      <created>1725978862608</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1725978862608</updated>\n      <workItem from=\"1725978863646\" duration=\"1347000\" />\n      <workItem from=\"1726057347247\" duration=\"6262000\" />\n      <workItem from=\"1726142472717\" duration=\"3976000\" />\n      <workItem from=\"1726148666587\" duration=\"5214000\" />\n    </task>\n    <task id=\"LOCAL-00001\" summary=\"sava\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1725981054343</created>\n      <option name=\"number\" value=\"00001\" />\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1725981054343</updated>\n    </task>\n    <task id=\"LOCAL-00002\" summary=\"sava\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1726063628560</created>\n      <option name=\"number\" value=\"00002\" />\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1726063628560</updated>\n    </task>\n    <task id=\"LOCAL-00003\" summary=\"sava\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1726156159920</created>\n      <option name=\"number\" value=\"00003\" />\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1726156159920</updated>\n    </task>\n    <task id=\"LOCAL-00004\" summary=\"savaa\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1726156468208</created>\n      <option name=\"number\" value=\"00004\" />\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1726156468208</updated>\n    </task>\n    <task id=\"LOCAL-00005\" summary=\"sava\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1726156735935</created>\n      <option name=\"number\" value=\"00005\" />\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1726156735935</updated>\n    </task>\n    <task id=\"LOCAL-00006\" summary=\"deploy\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1726156986559</created>\n      <option name=\"number\" value=\"00006\" />\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1726156986559</updated>\n    </task>\n    <option name=\"localTasksCounter\" value=\"7\" />\n    <servers />\n  </component>\n  <component name=\"TypeScriptGeneratedFilesManager\">\n    <option name=\"version\" value=\"3\" />\n  </component>\n  <component name=\"VcsManagerConfiguration\">\n    <option name=\"CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT\" value=\"false\" />\n    <option name=\"CHECK_NEW_TODO\" value=\"false\" />\n    <MESSAGE value=\"savaa\" />\n    <MESSAGE value=\"sava\" />\n    <MESSAGE value=\"deploy\" />\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"deploy\" />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision acc5496274dfec867b27e4e6163dcf3b7514116b)
++++ b/.idea/workspace.xml	(date 1726269340504)
+@@ -5,9 +5,24 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="ff93c017-30b8-4e23-823d-c6e60d8a0ba1" name="変更" comment="deploy">
++      <change afterPath="$PROJECT_DIR$/src/lib/img/main/boy.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/lib/img/main/guirl.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/lib/img/main/main.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/lib/img/main/mato.png" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/app.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.html" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/routes/+page.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/+page.svelte" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/lib/img/IMG_1054.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/img/back/IMG_1054.png" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/lib/img/IMG_1055.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/img/back/IMG_1055.png" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/lib/img/IMG_1056.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/img/back/IMG_1056.png" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/lib/img/IMG_1057.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/img/back/IMG_1057.png" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/lib/img/IMG_1058.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/img/back/IMG_1058.png" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/lib/img/IMG_2271.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/img/back/IMG_2271.png" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/lib/img/IMG_2272.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/img/back/IMG_2272.png" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/lib/img/IMG_2273.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/img/back/IMG_2273.png" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/lib/img/IMG_2274.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/img/back/IMG_2274.png" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/lib/img/IMG_2279.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/img/back/IMG_2279.png" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/lib/img/IMG_2280.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/img/back/IMG_2280.png" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/lib/img/IMG_2281.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/img/back/IMG_2281.png" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/lib/img/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/img/index.ts" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -48,31 +63,35 @@
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent"><![CDATA[{
+-  "keyToString": {
+-    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
+-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+-    "RunOnceActivity.ShowReadmeOnStart": "true",
+-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+-    "git-widget-placeholder": "main",
+-    "last_opened_file_path": "/home/shiki-01/WebstormProjects/mdn-fes-j2a-site/src/lib/img",
+-    "node.js.detected.package.eslint": "true",
+-    "node.js.detected.package.tslint": "true",
+-    "node.js.selected.package.eslint": "(autodetect)",
+-    "node.js.selected.package.tslint": "(autodetect)",
+-    "nodejs_package_manager_path": "npm",
+-    "npm.dev.executor": "Run",
+-    "prettierjs.PrettierConfiguration.Package": "/home/shiki-01/WebstormProjects/mdn-fes-j2a-site/node_modules/prettier",
+-    "run.code.analysis.last.selected.profile": "pProject Default",
+-    "settings.editor.selected.configurable": "preferences.pluginManager",
+-    "ts.external.directory.path": "/home/shiki-01/WebstormProjects/mdn-fes-j2a-site/node_modules/typescript/lib",
+-    "vue.rearranger.settings.migration": "true"
++  <component name="PropertiesComponent">{
++  &quot;keyToString&quot;: {
++    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
++    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
++    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
++    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
++    &quot;last_opened_file_path&quot;: &quot;/home/shiki-01/WebstormProjects/mdn-fes-j2a-site/src/lib/img&quot;,
++    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
++    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
++    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
++    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
++    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
++    &quot;npm.dev.executor&quot;: &quot;Run&quot;,
++    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/home/shiki-01/WebstormProjects/mdn-fes-j2a-site/node_modules/prettier&quot;,
++    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
++    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
++    &quot;ts.external.directory.path&quot;: &quot;/home/shiki-01/WebstormProjects/mdn-fes-j2a-site/node_modules/typescript/lib&quot;,
++    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+   }
+-}]]></component>
++}</component>
+   <component name="RecentsManager">
+     <key name="CopyFile.RECENT_KEYS">
+       <recent name="$PROJECT_DIR$/src/lib/img" />
+     </key>
++    <key name="MoveFile.RECENT_KEYS">
++      <recent name="$PROJECT_DIR$/src/lib/img/back" />
++      <recent name="$PROJECT_DIR$/src/lib/img/main" />
++    </key>
+   </component>
+   <component name="RunManager">
+     <configuration name="dev" type="js.build_tools.npm" nameIsGenerated="true">
+@@ -104,7 +123,9 @@
+       <workItem from="1725978863646" duration="1347000" />
+       <workItem from="1726057347247" duration="6262000" />
+       <workItem from="1726142472717" duration="3976000" />
+-      <workItem from="1726148666587" duration="5214000" />
++      <workItem from="1726148666587" duration="5363000" />
++      <workItem from="1726269185513" duration="31000" />
++      <workItem from="1726269229938" duration="111000" />
+     </task>
+     <task id="LOCAL-00001" summary="sava">
+       <option name="closed" value="true" />
+@@ -154,7 +175,15 @@
+       <option name="project" value="LOCAL" />
+       <updated>1726156986559</updated>
+     </task>
+-    <option name="localTasksCounter" value="7" />
++    <task id="LOCAL-00007" summary="deploy">
++      <option name="closed" value="true" />
++      <created>1726157173363</created>
++      <option name="number" value="00007" />
++      <option name="presentableId" value="LOCAL-00007" />
++      <option name="project" value="LOCAL" />
++      <updated>1726157173363</updated>
++    </task>
++    <option name="localTasksCounter" value="8" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">

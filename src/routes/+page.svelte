@@ -9,10 +9,14 @@
 		getDocs
 	} from 'firebase/firestore';
 	import { db } from '$lib/firebase';
+	import { MovePosition } from '$lib/MovePosition';
 	import { Parallax, ParallaxLayer } from 'svelte-parallax';
 	import { scrollRef } from 'svelte-scrolling';
-	import images from '$lib/img';
+	import images, { mains } from '$lib/img';
 	import { onMount } from 'svelte';
+	import { type EasingFunction } from 'svelte/transition';
+	import { quintOut } from 'svelte/easing';
+	import { tweened } from 'svelte/motion';
 
 	const points = [
 		{
@@ -33,9 +37,9 @@
 		},
 		{
 			name: 'gun',
-			top: '5',
+			top: '15',
 			left: '0',
-			size: '100',
+			size: '60',
 			rate: 0.9,
 			rotate: 0
 		},
@@ -43,13 +47,13 @@
 			name: 'pen-case',
 			top: '40',
 			left: '2',
-			size: '100',
+			size: '80',
 			rate: 0.2,
 			rotate: 0
 		},
 		{
 			name: 'textbook',
-			top: '1',
+			top: '40',
 			left: '5',
 			size: '80',
 			rate: 0.4,
@@ -85,7 +89,7 @@
 			left: '60',
 			size: '50',
 			rate: 0.3,
-			rotate: 0,
+			rotate: 0
 		},
 		{
 			name: 'neck-tie',
@@ -93,11 +97,11 @@
 			left: '-8',
 			size: '50',
 			rate: 0.3,
-			rotate: 0,
+			rotate: 0
 		},
 		{
 			name: 'eraser',
-			top: '3',
+			top: '30',
 			left: '40',
 			size: '50',
 			rate: 0.3,
@@ -105,13 +109,106 @@
 		},
 		{
 			name: 'pencil',
-			top: '3',
+			top: '30',
 			left: '60',
 			size: '50',
 			rate: 0.5,
 			rotate: 0
 		}
 	];
+
+	type MainP = {
+		[key: string]: {
+			top: string;
+			left: string;
+			size: string;
+			rate: number;
+			rotate: number;
+		};
+	};
+
+	const mainp: MainP = {
+		boy: {
+			top: '7',
+			left: '55',
+			size: '110',
+			rate: 0.1,
+			rotate: 0
+		},
+		girl: {
+			top: '7',
+			left: '55',
+			size: '110',
+			rate: 0.1,
+			rotate: 0
+		},
+		mato: {
+			top: '7',
+			left: '55',
+			size: '110',
+			rate: 0.1,
+			rotate: 0
+		},
+
+		title: {
+			top: '0',
+			left: '48',
+			size: '100',
+			rate: 0.1,
+			rotate: 0
+		}
+	};
+
+	let visible = true;
+
+	type Animation = {
+		(node: HTMLElement, value: number): void,
+	}
+
+	const tween = (node: HTMLElement, { animation, duration, easing = quintOut, delay = 0 }: {
+		animation: Animation,
+		duration?: number,
+		easing?: EasingFunction,
+		delay?: number
+	}) => {
+		const store = tweened(0, { duration, easing });
+		const unsubscribe = store.subscribe((value) => {
+			animation(node, value);
+		});
+
+		const callback = (entries: IntersectionObserverEntry[]) => {
+			const entry = entries[0];
+			let inView = entry.isIntersecting;
+
+			if (!inView) return;
+
+			setTimeout(() => store.set(1), delay);
+		};
+
+		const intersectionObserver = new IntersectionObserver(callback, {});
+		intersectionObserver.observe(node);
+
+		return {
+			destroy() {
+				intersectionObserver.disconnect();
+				unsubscribe();
+			}
+		};
+	};
+
+	const fly: Animation = (node, value) => {
+		node.style.opacity = value.toString();
+		node.style.transform = `translate(-50%, ${(1 - value) * 500}px)`;
+	};
+
+	const smart = (e: DeviceOrientationEvent) => {
+		let alpha = e.alpha;
+		let beta = e.beta;
+		let gamma = e.gamma;
+
+		const movePosition = new MovePosition(alpha, beta, gamma);
+		movePosition.setImgPosition();
+	}
 
 	type User = {
 		id?: string;
@@ -136,24 +233,26 @@
 	});
 
 	onMount(async () => {
-		const ranks = await getDocs(collection(db, 'ranking'))
+		const ranks = await getDocs(collection(db, 'ranking'));
 		ranks.forEach((doc) => {
-		    const data = doc.data()
+			const data = doc.data();
 			ranking.push({
 				id: doc.id,
 				name: data.name,
 				timestamp: data.timestamp,
 				score: data.score
-			})
-		})
-	})
+			});
+		});
+	});
 </script>
+
+<svelte:window on:deviceorientation={smart} />
 
 <div class="absolute top-0 left-0 w-full h-full pointer-events-none z-[1]">
 	<Parallax sections={points.length} config={{stiffness: 0.2, damping: 0.9}}>
 		{#each Object.entries(images) as [path, src], i}
-			<ParallaxLayer 
-			    rate={points[i].rate}
+			<ParallaxLayer
+				rate={points[i].rate}
 				class="absolute"
 				style="top: {points[i].top}%; left: {points[i].left}%; width: {points[i].size}%; height: {points[i].size}%; rotate: {points[i].rotate}deg;"
 			>
@@ -164,8 +263,22 @@
 </div>
 
 <section class="w-full">
-	<div class="h-[calc(100vh-60px)] lg:h-[calc(100vh-70px)] w-full bg-sky-200">
-		<p>君も挑戦してみよう！</p>
+	<div class="h-[calc(100vh-60px)] lg:h-[calc(100vh-70px)] relative overflow-hidden w-full bg-sky-200">
+		{#each Object.entries(mainp) as [key],i (key)}
+			{#if visible}
+				<div
+					id={key}
+					use:tween={{ animation: fly, duration: 1000, delay: 100 * i }}
+					class="absolute object-cover w-full h-full"
+					style="transform: translate(-50%, 0%); top: {mainp[key].top}%; left: {mainp[key].left}%; scale: {mainp[key].size}%; rotate: {mainp[key].rotate}deg;"
+				>
+					<img
+						src={mains[key]}
+						alt={key}
+					/>
+				</div>
+			{/if}
+		{/each}
 	</div>
 	<div class="h-full w-full">
 		<div class="h-[calc(100vh-60px)] lg:h-[calc(100vh-70px)] w-full sm:p-12 lg:p-[200px] text-center items-center">
@@ -194,7 +307,7 @@
 				ScoreBoard
 			</h1>
 			{#if ranking}
-			{JSON.stringify(ranking)}
+				{JSON.stringify(ranking)}
 				<div class="flex flex-col max-w-xl gap-4">
 					{#each [0, 1, 2] as i}
 						<div class="flex flex-row justify-between">
