@@ -4,7 +4,12 @@
 	import { Navbar, NavBrand, NavUl, NavHamburger } from 'flowbite-svelte';
 	import { Footer, FooterBrand, FooterCopyright, FooterLinkGroup } from 'flowbite-svelte';
 	import { scrollTo, scrollTop } from 'svelte-scrolling';
+	import { bg } from '$lib/img';
 </script>
+
+<div class="w-screen h-screen fixed top-0 left-0 z-30 mix-blend-soft-light">
+	<img src={bg} class="w-full h-[100vh] object-cover opacity-20" alt="bg" />
+</div>
 
 <div class="main relative overflow-hidden">
 	<Navbar class="w-full h-[60px] lg:h-[70px] fixed top-0 z-[99]">

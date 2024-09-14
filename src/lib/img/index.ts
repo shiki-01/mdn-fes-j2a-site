@@ -1,7 +1,5 @@
 const images: Record<string, { default: string }> = import.meta.glob('./back/*.png', { eager: true });
 
-export default images;
-
 import boy from './main/boy.png';
 import girl from './main/girl.png';
 import mato from './main/mato.png';
@@ -15,4 +13,8 @@ const mains: {[key: string]: string} = {
 	main: main,
 	title: title,
 }
-export { mains };
+
+import bg from './bg.png';
+import map from './map.svg';
+
+export { images, mains, bg, map };

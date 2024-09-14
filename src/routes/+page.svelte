@@ -6,15 +6,13 @@
 		QuerySnapshot,
 		FieldValue,
 		orderBy,
-		getDocs
 	} from 'firebase/firestore';
 	import { db } from '$lib/firebase';
 	import { Parallax, ParallaxLayer } from 'svelte-parallax';
 	import { DetectDeviceOrientation, type Orientation } from 'detect-device-orientation';
 	import { scrollRef } from 'svelte-scrolling';
-	import images, { mains } from '$lib/img';
+	import { images, mains, map } from '$lib/img';
 	import pr from '$lib/img/pr.mp4';
-	import { onMount } from 'svelte';
 	import { type EasingFunction } from 'svelte/transition';
 	import { quintOut } from 'svelte/easing';
 	import { tweened } from 'svelte/motion';
@@ -49,7 +47,7 @@
 		},
 		{
 			name: 'pen-case',
-			top: '40',
+			top: '42',
 			left: '60',
 			size: '40',
 			rate: 0.2,
@@ -76,7 +74,7 @@
 		},
 		{
 			name: 'lunch-box',
-			top: '48',
+			top: '49',
 			left: '-10',
 			size: '60',
 			rate: 0.4,
@@ -221,7 +219,7 @@
 
 	let ranking: User[] = [];
 
-	onSnapshot(query(collection(db, 'ranking'), orderBy('score')), (snapshot: QuerySnapshot) => {
+	onSnapshot(query(collection(db, 'ranking'), orderBy('score', 'desc')), (snapshot: QuerySnapshot) => {
 		ranking = snapshot.docs.map((doc) => {
 			const data = doc.data();
 
@@ -263,19 +261,6 @@
 			});
 		}
 	}
-
-	onMount(async () => {
-		const ranks = await getDocs(collection(db, 'ranking'));
-		ranks.forEach((doc) => {
-			const data = doc.data();
-			ranking.push({
-				id: doc.id,
-				name: data.name,
-				timestamp: data.timestamp,
-				score: data.score
-			});
-		});
-	});
 </script>
 
 <div class="absolute top-0 left-0 w-full h-full pointer-events-none z-20">
@@ -287,6 +272,7 @@
 				style="top: {points[i].top}%; left: {points[i].left}%; width: {points[i].size}%; height: {points[i].size}%;"
 			>
 				<img src={src.default} alt={path}
+						 class="drop-shadow-lg shadow-slate-900/80"
 						 style="{points[i].turn ? 'transform: scale(-1, 1);' : ''} rotate: {points[i].rotate}deg;" />
 			</ParallaxLayer>
 		{/each}
@@ -355,18 +341,18 @@
 				ScoreBoard
 			</h1>
 			{#if ranking}
-				<div class="flex flex-col max-w-xl gap-4">
+				<div class="flex flex-col max-w-full p-10 gap-4">
 					{#each [0, 1, 2] as i}
-						<div class="flex flex-row justify-between">
+						<div class="flex flex-row justify-between truncate">
 							<p>{ranking[i]?.name} さん</p>
 							<p>{ranking[i]?.score || "Error"} pt</p>
 						</div>
 					{/each}
 					{#each [3, 6] as i}
-						<div class="flex flex-row justify-between gap-4">
+						<div class="grid grid-cols-2 gap-4">
 							{#each [i, i + 1] as j}
-								<div class="flex flex-row justify-between gap-4">
-									<p>{ranking[j]?.name || "Error"} さん</p>
+								<div class="flex flex-row justify-between gap-2">
+									<p class="truncate">{ranking[j]?.name || "Error"} さん</p>
 									<p>{ranking[j]?.score || "Error"} pt</p>
 								</div>
 							{/each}
@@ -379,6 +365,9 @@
 			<h1 use:scrollRef={'access'} class="text-4xl text-center pb-10 pt-[80px]">
 				Access
 			</h1>
+			<div class="w-full p-5 flex justify-center items-center">
+				<img src={map} alt="map">
+			</div>
 		</div>
 	</div>
 </section>
