@@ -286,7 +286,7 @@
 </div>
 
 <section class="w-full">
-	<div class="h-[calc(100vh-60px)] lg:h-[calc(100vh-70px)] relative overflow-hidden w-full bg-sky-200 z-10">
+	<div class="h-[calc(100svh-60px)] lg:h-[calc(100svh-70px)] relative overflow-hidden w-full bg-sky-200 z-10">
 		{#each Object.entries(mainp) as [key],i (key)}
 			{#if visible}
 				<div
@@ -306,7 +306,7 @@
 	</div>
 	<div class="h-full w-full relative">
 		<div
-			class="h-[calc(100vh-60px)] lg:h-[calc(100vh-70px)] w-full p-10 sm:p-12 md:p-10 lg:p-[200px] text-center items-center">
+			class="h-[calc(100svh-60px)] lg:h-[calc(100svh-70px)] w-full p-10 sm:p-12 md:p-10 lg:p-[200px] text-center items-center">
 			<h1 use:scrollRef={'home'} class="text-4xl text-center pb-10 pt-[80px]">
 				Home
 			</h1>
@@ -322,7 +322,7 @@
 				キミも「辰巳のアストロブラスター」に参加して歴史に名を刻め！
 			</p>
 		</div>
-		<div class="w-full h-[calc(100vh-60px)] lg:h-[calc(100vh-70px)] sm:p-12 lg:p-[200px] relative">
+		<div class="w-full h-[calc(100svh-60px)] lg:h-[calc(100svh-70px)] sm:p-12 lg:p-[200px] relative">
 			<h1 use:scrollRef={'about'} class="text-4xl text-center pb-10 pt-[80px]">
 				About
 			</h1>
@@ -342,7 +342,7 @@
 				</p>
 			</div>
 		</div>
-		<div class="w-full h-[calc(100vh-60px)] lg:h-[calc(100vh-70px)] sm:p-12 lg:p-[200px] flex flex-col items-center">
+		<div class="w-full h-[calc(100svh-60px)] lg:h-[calc(100svh-70px)] sm:p-12 lg:p-[200px] flex flex-col items-center">
 			<h1 use:scrollRef={'scoreboard'} class="text-4xl text-center pb-10 pt-[80px]">
 				ScoreBoard
 			</h1>
@@ -368,7 +368,7 @@
 				</div>
 			{/if}
 		</div>
-		<div class="w-full h-[calc(100vh-60px)] lg:h-[calc(100vh-70px)] sm:p-12 lg:p-[200px]">
+		<div class="w-full h-[calc(100svh-60px)] lg:h-[calc(100svh-70px)] sm:p-12 lg:p-[200px]">
 			<h1 use:scrollRef={'access'} class="text-4xl text-center pb-10 pt-[80px]">
 				Access
 			</h1>
