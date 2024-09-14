@@ -13,6 +13,7 @@
 	import { Parallax, ParallaxLayer } from 'svelte-parallax';
 	import { scrollRef } from 'svelte-scrolling';
 	import images, { mains } from '$lib/img';
+	import pr from '$lib/img/pr.mp4';
 	import { onMount } from 'svelte';
 	import { type EasingFunction } from 'svelte/transition';
 	import { quintOut } from 'svelte/easing';
@@ -25,55 +26,62 @@
 			left: '65',
 			size: '30',
 			rate: 0.2,
+			turn: false,
 			rotate: 0
 		},
 		{
 			name: 'switch',
-			top: '27.5',
-			left: '25',
-			size: '50',
+			top: '27',
+			left: '28',
+			size: '45',
 			rate: 0.2,
+			turn: false,
 			rotate: 0
 		},
 		{
 			name: 'gun',
 			top: '15',
-			left: '0',
-			size: '60',
+			left: '1',
+			size: '40',
 			rate: 0.9,
-			rotate: 0
+			turn: true,
+			rotate: -10
 		},
 		{
 			name: 'pen-case',
 			top: '40',
-			left: '2',
-			size: '80',
+			left: '60',
+			size: '40',
 			rate: 0.2,
-			rotate: 0
+			turn: false,
+			rotate: 10
 		},
 		{
 			name: 'textbook',
 			top: '40',
 			left: '5',
-			size: '80',
+			size: '30',
 			rate: 0.4,
+			turn: false,
 			rotate: 0
 		},
 		{
 			name: 'basketball',
-			top: '18',
-			left: '10',
-			size: '140',
+			top: '20',
+			left: '30',
+			size: '100',
 			rate: 0.6,
+			turn: false,
 			rotate: 0
 		},
 		{
 			name: 'lunch-box',
-			top: '21',
-			left: '-20',
-			size: '100',
-			rate: 0.5,
-			rotate: 0
+			top: '48',
+			left: '-10',
+			size: '60',
+			rate: 0.4,
+			turn: false,
+			rotate: -10
 		},
 		{
 			name: 'blackboard',
@@ -81,38 +89,43 @@
 			left: '50',
 			size: '50',
 			rate: 0.7,
+			turn: false,
 			rotate: 0
 		},
 		{
 			name: 'ribbon',
-			top: '22',
+			top: '19',
 			left: '60',
-			size: '50',
-			rate: 0.3,
-			rotate: 0
+			size: '30',
+			rate: 0.2,
+			turn: false,
+			rotate: 10
 		},
 		{
 			name: 'neck-tie',
-			top: '22',
-			left: '-8',
-			size: '50',
-			rate: 0.3,
-			rotate: 0
+			top: '19',
+			left: '15',
+			size: '30',
+			rate: 0.2,
+			turn: false,
+			rotate: -5
 		},
 		{
 			name: 'eraser',
-			top: '30',
-			left: '40',
-			size: '50',
+			top: '24',
+			left: '-5',
+			size: '40',
 			rate: 0.3,
+			turn: false,
 			rotate: 0
 		},
 		{
 			name: 'pencil',
 			top: '30',
-			left: '60',
-			size: '50',
+			left: '65',
+			size: '40',
 			rate: 0.5,
+			turn: false,
 			rotate: 0
 		}
 	];
@@ -208,6 +221,16 @@
 
 		const movePosition = new MovePosition(alpha, beta, gamma);
 		movePosition.setImgPosition();
+	};
+
+	let time = 0;
+	let duration: number = 20;
+
+	let scrollY = 0;
+
+	$: {
+		const total = document.documentElement.scrollHeight - window.innerHeight;
+		time = duration * (scrollY / total);
 	}
 
 	type User = {
@@ -246,24 +269,24 @@
 	});
 </script>
 
-<svelte:window on:deviceorientation={smart} />
+<svelte:window on:deviceorientation={smart} bind:scrollY />
 
-<div class="absolute top-0 left-0 w-full h-full pointer-events-none z-[1]">
+<div class="absolute top-0 left-0 w-full h-full pointer-events-none z-20">
 	<Parallax sections={points.length} config={{stiffness: 0.2, damping: 0.9}}>
 		{#each Object.entries(images) as [path, src], i}
 			<ParallaxLayer
 				rate={points[i].rate}
-				class="absolute"
-				style="top: {points[i].top}%; left: {points[i].left}%; width: {points[i].size}%; height: {points[i].size}%; rotate: {points[i].rotate}deg;"
+				class="absolute z-10"
+				style="top: {points[i].top}%; left: {points[i].left}%; width: {points[i].size}%; height: {points[i].size}%;"
 			>
-				<img src={src.default} alt={path} />
+				<img src={src.default} alt={path} style="{points[i].turn ? 'transform: scale(-1, 1);' : ''} rotate: {points[i].rotate}deg;" />
 			</ParallaxLayer>
 		{/each}
 	</Parallax>
 </div>
 
 <section class="w-full">
-	<div class="h-[calc(100vh-60px)] lg:h-[calc(100vh-70px)] relative overflow-hidden w-full bg-sky-200">
+	<div class="h-[calc(100vh-60px)] lg:h-[calc(100vh-70px)] relative overflow-hidden w-full bg-sky-200 z-10">
 		{#each Object.entries(mainp) as [key],i (key)}
 			{#if visible}
 				<div
@@ -273,6 +296,7 @@
 					style="transform: translate(-50%, 0%); top: {mainp[key].top}%; left: {mainp[key].left}%; scale: {mainp[key].size}%; rotate: {mainp[key].rotate}deg;"
 				>
 					<img
+						class="z-[2]"
 						src={mains[key]}
 						alt={key}
 					/>
@@ -280,8 +304,9 @@
 			{/if}
 		{/each}
 	</div>
-	<div class="h-full w-full">
-		<div class="h-[calc(100vh-60px)] lg:h-[calc(100vh-70px)] w-full sm:p-12 lg:p-[200px] text-center items-center">
+	<div class="h-full w-full relative">
+		<div
+			class="h-[calc(100vh-60px)] lg:h-[calc(100vh-70px)] w-full p-10 sm:p-12 md:p-10 lg:p-[200px] text-center items-center">
 			<h1 use:scrollRef={'home'} class="text-4xl text-center pb-10 pt-[80px]">
 				Home
 			</h1>
@@ -297,10 +322,25 @@
 				キミも「辰巳のアストロブラスター」に参加して歴史に名を刻め！
 			</p>
 		</div>
-		<div class="w-full h-[calc(100vh-60px)] lg:h-[calc(100vh-70px)] sm:p-12 lg:p-[200px]">
+		<div class="w-full h-[calc(100vh-60px)] lg:h-[calc(100vh-70px)] sm:p-12 lg:p-[200px] relative">
 			<h1 use:scrollRef={'about'} class="text-4xl text-center pb-10 pt-[80px]">
 				About
 			</h1>
+			<div class="w-[300px] absolute top-[10em] right-[-4em] rotate-6 flex flex-col">
+				<div
+					class="rounded-lg overflow-hidden shadow-2xl shadow-slate-900/50">
+					<video
+						class="object-cover"
+						src={pr}
+						bind:currentTime={time}
+						muted
+						playsinline
+					/>
+				</div>
+				<p class="text-center font-black text-lg text-slate-50 z-10">
+					クラスPVを公開中！
+				</p>
+			</div>
 		</div>
 		<div class="w-full h-[calc(100vh-60px)] lg:h-[calc(100vh-70px)] sm:p-12 lg:p-[200px] flex flex-col items-center">
 			<h1 use:scrollRef={'scoreboard'} class="text-4xl text-center pb-10 pt-[80px]">
