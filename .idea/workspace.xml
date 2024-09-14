@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ff93c017-30b8-4e23-823d-c6e60d8a0ba1" name="変更" comment="deploy">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/+page.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/+page.svelte" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -112,7 +113,7 @@
       <workItem from="1726142472717" duration="3976000" />
       <workItem from="1726148666587" duration="5363000" />
       <workItem from="1726269185513" duration="31000" />
-      <workItem from="1726269229938" duration="19157000" />
+      <workItem from="1726269229938" duration="20464000" />
     </task>
     <task id="LOCAL-00001" summary="sava">
       <option name="closed" value="true" />
@@ -194,7 +195,15 @@
       <option name="project" value="LOCAL" />
       <updated>1726286749475</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="deploy">
+      <option name="closed" value="true" />
+      <created>1726297569898</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1726297569898</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

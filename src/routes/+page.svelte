@@ -290,12 +290,12 @@
 		{#each Object.entries(mainp) as [key],i (key)}
 			{#if visible}
 				<div
-					id={key}
 					use:tween={{ animation: fly, duration: 1000, delay: 100 * i }}
 					class="absolute object-cover w-full h-full"
 					style="transform: translate(-50%, 0%); top: {mainp[key].top}%; left: {mainp[key].left}%; scale: {mainp[key].size}%; rotate: {mainp[key].rotate}deg;"
 				>
 					<img
+						id={key}
 						class="z-[2]"
 						src={mains[key]}
 						alt={key}
