@@ -17,4 +17,6 @@ const mains: {[key: string]: string} = {
 import bg from './bg.png';
 import map from './map.svg';
 
-export { images, mains, bg, map };
+const rules: Record<string, { default: string }> = import.meta.glob('./rule/*.png', { eager: true });
+
+export { images, mains, bg, map, rules };

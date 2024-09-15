@@ -11,14 +11,16 @@
 	import { Parallax, ParallaxLayer } from 'svelte-parallax';
 	import { DetectDeviceOrientation, type Orientation } from 'detect-device-orientation';
 	import { scrollRef } from 'svelte-scrolling';
-	import { Carousel } from 'flowbite-svelte';
-	import { images, mains, map } from '$lib/img';
+	import { Carousel, Button, Modal } from 'flowbite-svelte';
+	import { images, mains, map, rules } from '$lib/img';
 	import pr from '$lib/img/pr.mp4';
 	import { type EasingFunction } from 'svelte/transition';
 	import { quintOut } from 'svelte/easing';
 	import { tweened } from 'svelte/motion';
 
 	let index = 0;
+
+	let pvModal = false;
 
 	const slide = [
 		{
@@ -47,12 +49,12 @@
 		},
 		{
 			name: 'switch',
-			top: '32',
-			left: '28',
-			size: '45',
+			top: '44',
+			left: '5',
+			size: '40',
 			rate: 0.2,
 			turn: false,
-			rotate: 0
+			rotate: -10
 		},
 		{
 			name: 'gun',
@@ -65,7 +67,7 @@
 		},
 		{
 			name: 'pen-case',
-			top: '50',
+			top: '62',
 			left: '60',
 			size: '40',
 			rate: 0.2,
@@ -74,7 +76,7 @@
 		},
 		{
 			name: 'textbook',
-			top: '50',
+			top: '64',
 			left: '5',
 			size: '30',
 			rate: 0.4,
@@ -92,7 +94,7 @@
 		},
 		{
 			name: 'lunch-box',
-			top: '57',
+			top: '70',
 			left: '-10',
 			size: '60',
 			rate: 0.4,
@@ -101,16 +103,16 @@
 		},
 		{
 			name: 'blackboard',
-			top: '80',
-			left: '50',
+			top: '27',
+			left: '-2',
 			size: '50',
 			rate: 0.7,
 			turn: false,
-			rotate: 0
+			rotate: -8
 		},
 		{
 			name: 'ribbon',
-			top: '19',
+			top: '30',
 			left: '60',
 			size: '30',
 			rate: 0.2,
@@ -119,7 +121,7 @@
 		},
 		{
 			name: 'neck-tie',
-			top: '19',
+			top: '30',
 			left: '15',
 			size: '30',
 			rate: 0.2,
@@ -128,8 +130,8 @@
 		},
 		{
 			name: 'eraser',
-			top: '24',
-			left: '-5',
+			top: '35',
+			left: '60',
 			size: '40',
 			rate: 0.3,
 			turn: false,
@@ -137,7 +139,7 @@
 		},
 		{
 			name: 'pencil',
-			top: '38',
+			top: '50',
 			left: '65',
 			size: '40',
 			rate: 0.5,
@@ -187,6 +189,39 @@
 			rotate: 0
 		}
 	};
+
+	const rule = [
+		{
+			name: '1textbook',
+			title: '朝',
+			color: 'text-red-600',
+			desc: '学校に持っていくべきもの'
+		},
+		{
+			name: '2hiru',
+			title: '昼',
+			color: 'text-amber-600',
+			desc: '書かれた問題が正しいもの'
+		},
+		{
+			name: '3tmato',
+			title: '夜',
+			color: 'text-sky-800',
+			desc: '目が黒い魂'
+		},
+		{
+			top: '20%',
+			left: 'calc(100vw - 180px)',
+		},
+		{
+			top: '40%',
+			left: '0%',
+		},
+		{
+			top: '80%',
+			left: '40%',
+		},
+	];
 
 	type Animation = {
 		(node: HTMLElement, value: number): void,
@@ -281,6 +316,24 @@
 	}
 </script>
 
+<Modal title="Terms of Service" bind:open={pvModal} autoclose>
+	<p class="text-base leading-relaxed text-gray-500">
+		クラスPVは、生徒会ラジオや、喬徳館ステージの休憩中に放送されます！
+	</p>
+	<div class="rounded-lg overflow-hidden">
+		<video
+			class="w-full"
+			src={pr}
+			controls
+		>
+			<track kind="captions"  src={pr} />
+		</video>
+	</div>
+	<svelte:fragment slot="footer">
+		<Button on:click={() => pvModal = false}>閉じる</Button>
+	</svelte:fragment>
+</Modal>
+
 <div class="absolute top-0 left-0 w-full h-full pointer-events-none z-20">
 	<Parallax sections={points.length} config={{stiffness: 0.2, damping: 0.9}}>
 		{#each Object.entries(images) as [path, src], i}
@@ -341,12 +394,57 @@
 				<span class="text-xs">safari ゆるさん</span>
 			</p>
 		</div>
+		<div
+			class="relative h-[calc(100svh-60px+100px)] lg:h-[calc(100svh-70px+100px)] w-full p-10 sm:p-12 md:p-10 lg:p-[200px] text-center items-center">
+			<h1 use:scrollRef={'rule'} class="text-4xl text-center pb-10 pt-[80px] before:bg-pink-200">
+				Rule
+			</h1>
+			<div class="">
+				<p class="py-2">
+					コースは朝 → 昼 → 夜と切り替わっていき、朝は学校に行く前の準備、昼は学校での授業、夜は非日常的な学校の心霊風になっています。
+				</p>
+				<p class="py-2">
+					それぞれの時間帯にある "正しい的" を撃ち抜きましょう！
+				</p>
+				<p class="marker text-lg py-6">
+					的は一個 100 点、<br>全部で 9 個隠れています！
+				</p>
+			</div>
+			<div class="grid grid-cols-3 gap-4">
+				{#each Object.entries(rules) as [path, src], i}
+					{#if i < 3}
+						<div class="flex flex-col justify-between z-[2]">
+							<p class="font-bold {rule[i].color}">{rule[i].title}</p>
+							<div class="rounded-lg bg-slate-800/40 h-full grid grid-rows-2 space-y-2 p-2 pt-4">
+								<div class="flex items-center">
+									<img src={src.default} alt={path} class="object-cover" />
+								</div>
+								<p class="text-slate-50 text-sm">
+									{rule[i].desc}
+								</p>
+							</div>
+						</div>
+					{:else}
+						<div class="absolute opacity-50 z-[0] mix-blend-soft-light" style="top: {rule[i].top}; left: {rule[i].left};">
+							<img src={src.default} alt={path} class="" />
+						</div>
+					{/if}
+				{/each}
+			</div>
+			<p class="pt-5 font-bold">
+				<span class="pr-2">HINT !</span> 的のすぐ下の穴をめがけて撃つと点が入るよ！
+			</p>
+		</div>
 		<div class="w-full h-[calc(100svh-60px+400px)] lg:h-[calc(100svh-70px)] sm:p-12 lg:p-[200px] relative">
 			<h1 use:scrollRef={'about'} class="text-4xl text-center pb-10 pt-[80px] before:bg-amber-200">
 				About
 			</h1>
-			<div class="w-[300px] absolute top-[12em] right-[-4em] rotate-6 flex flex-col cursor-pointer">
-				<div
+			<button
+				type="button"
+				tabindex="0"
+				on:click={() => pvModal = true}
+				class="w-[300px] absolute top-[12em] left-[-2em] rotate-[-6deg] flex flex-col cursor-pointer">
+				<button
 					class="rounded-lg overflow-hidden shadow-2xl shadow-slate-900/50">
 					<video
 						class="object-cover"
@@ -356,13 +454,13 @@
 						muted
 						playsinline
 					/>
-				</div>
-				<p class="text-center font-black text-lg text-slate-50 z-10">
+				</button>
+				<button class="text-center font-black text-lg text-slate-50 z-10">
 					クラスPVを公開中！<br>
 					<span class="click">click me !</span>
-				</p>
-			</div>
-			<div class="pt-[250px] px-4 space-y-10">
+				</button>
+			</button>
+			<div class="pt-[220px] px-4 space-y-10">
 				<div class="flex flex-row justify-between gap-4">
 					<div class="main">
 						<img src={mains.main} alt="main" class="w-[150px] pt-[50px] rounded-full" />
@@ -389,7 +487,8 @@
 				</div>
 			</div>
 		</div>
-		<div class="w-full h-[calc(100svh-60px+60px)] lg:h-[calc(100svh-70px+60px)] sm:p-12 lg:p-[200px] flex flex-col items-center">
+		<div
+			class="w-full h-[calc(100svh-60px+100px)] lg:h-[calc(100svh-70px+100px)] sm:p-12 lg:p-[200px] flex flex-col items-center">
 			<h1 use:scrollRef={'scoreboard'} class="text-4xl text-center pb-10 pt-[80px] before:bg-blue-300">
 				ScoreBoard
 			</h1>
@@ -401,14 +500,18 @@
 							<div class="flex flex-row items-end py-5 font-bold underline justify-between">
 								<div>
 									<p>{i + 1}位</p>
-									<p class="flex items-center gap-1"><span class="inline-block max-w-[80px] truncate">{ranking[i]?.name}</span><span class="inline-block">さん</span></p>
+									<p class="flex items-center gap-1"><span
+										class="inline-block max-w-[80px] truncate">{ranking[i]?.name}</span><span
+										class="inline-block">さん</span></p>
 								</div>
 								<p>{ranking[i]?.score || "Error"} pt</p>
 							</div>
 						{/each}
 						{#each [3, 4, 5, 6] as i}
 							<div class="flex flex-row py-3 justify-between gap-2">
-								<p class="flex items-center gap-1"><span class="inline-block max-w-[80px] truncate">{ranking[i]?.name}</span><span class="inline-block">さん</span></p>
+								<p class="flex items-center gap-1"><span
+									class="inline-block max-w-[80px] truncate">{ranking[i]?.name}</span><span
+									class="inline-block">さん</span></p>
 								<p>{ranking[i]?.score || "Error"} pt</p>
 							</div>
 						{/each}
