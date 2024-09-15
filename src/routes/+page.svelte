@@ -47,7 +47,7 @@
 		},
 		{
 			name: 'switch',
-			top: '33',
+			top: '32',
 			left: '28',
 			size: '45',
 			rate: 0.2,
@@ -335,12 +335,17 @@
 			<p class="p-2 my-4 border-x-4 border-sky-50">
 				キミも「辰巳のアストロブラスター」に参加して歴史に名を刻め！
 			</p>
+			<p class="text-sm">
+				※ safari 等のナビゲーションバーが動的に変化するブラウザでは正常に動作しない場合があります。<br>
+				全画面表示でご覧ください。<br>
+				<span class="text-xs">safari ゆるさん</span>
+			</p>
 		</div>
 		<div class="w-full h-[calc(100svh-60px+400px)] lg:h-[calc(100svh-70px)] sm:p-12 lg:p-[200px] relative">
 			<h1 use:scrollRef={'about'} class="text-4xl text-center pb-10 pt-[80px] before:bg-amber-200">
 				About
 			</h1>
-			<div class="w-[300px] absolute top-[10em] right-[-4em] rotate-6 flex flex-col cursor-pointer">
+			<div class="w-[300px] absolute top-[12em] right-[-4em] rotate-6 flex flex-col cursor-pointer">
 				<div
 					class="rounded-lg overflow-hidden shadow-2xl shadow-slate-900/50">
 					<video
@@ -358,16 +363,16 @@
 				</p>
 			</div>
 			<div class="pt-[250px] px-4 space-y-10">
-				<div class="flex flex-row gap-4">
+				<div class="flex flex-row justify-between gap-4">
 					<div class="main">
-						<img src={mains.main} alt="main" class="w-[150px] rounded-full" />
+						<img src={mains.main} alt="main" class="w-[150px] pt-[50px] rounded-full" />
 					</div>
 					<div class="flex flex-col pr-4 pt-5">
 						<div class="fuKi">
-							<p>ここに何入れればいいかわかんないね！！！</p>
+							<p>予算がすごいことになったとかならなかったとか聞いたけど…？</p>
 						</div>
 						<div class="fuKi">
-							<p>そうだね！！！</p>
+							<p>情報科ですから</p>
 						</div>
 					</div>
 				</div>
@@ -537,6 +542,7 @@
         border: solid 3px #555;
         box-sizing: border-box;
         border-radius: 10px;
+				@apply w-[150px] sm:w-[200px];
 
         &::before {
             content: "";
