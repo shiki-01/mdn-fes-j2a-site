@@ -436,9 +436,9 @@
 				{#each Object.entries(rules) as [path, src], i}
 					{#if i < 3}
 						<div class="flex flex-col justify-between z-[2]">
-							<p class="font-bold {rule[i].color}">{rule[i].title}</p>
+							<p class="font-bold text-lg pb-2 {rule[i].color}">{rule[i].title}</p>
 							<div class="rounded-lg bg-slate-800/40 h-full grid grid-rows-2 space-y-2 p-2 pt-4">
-								<div class="flex items-center">
+								<div class="flex justify-center items-center">
 									<img src={src.default} alt={path} class="object-cover" />
 								</div>
 								<p class="text-slate-50 text-sm">
