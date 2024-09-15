@@ -357,19 +357,35 @@
 <section class="w-full">
 	<div class="h-[calc(100svh-60px)] lg:h-[calc(100svh-70px)] relative overflow-hidden w-full bg-sky-200 z-10">
 		{#each Object.entries(mainp) as [key],i (key)}
-			<div
-				id={key}
-				data-z={i}
-				use:tween={{ animation: fly, duration: 1000, delay: 100 * i }}
-				class="absolute w-full h-auto pt-[calc(100svh-(100%/sqrt(2))-105%)]"
-				style="transform: translate(-50%, 0%); top: {mainp[key].top}; left: {mainp[key].left}%; scale: {mainp[key].size}%; rotate: {mainp[key].rotate}deg;"
-			>
-				<img
-					class="z-[2]"
-					src={mains[key]}
-					alt={key}
-				/>
-			</div>
+			{#if key === 'title'}
+				<div
+					id={key}
+					data-z={i}
+					use:tween={{ animation: fly, duration: 1000, delay: 100 * i }}
+					class="absolute w-full h-auto pt-[calc(100svh-(100%/sqrt(2))-115%)]"
+					style="transform: translate(-50%, 0%); top: 0; left: {mainp[key].left}%; scale: {mainp[key].size}%; rotate: {mainp[key].rotate}deg;"
+				>
+					<img
+						class="z-[2]"
+						src={mains[key]}
+						alt={key}
+					/>
+				</div>
+			{:else}
+				<div
+					id={key}
+					data-z={i}
+					use:tween={{ animation: fly, duration: 1000, delay: 100 * i }}
+					class="absolute w-full h-auto pt-[calc(100svh-(100%/sqrt(2))-105%)]"
+					style="transform: translate(-50%, 0%); top: {mainp[key].top}; left: {mainp[key].left}%; scale: {mainp[key].size}%; rotate: {mainp[key].rotate}deg;"
+				>
+					<img
+						class="z-[2]"
+						src={mains[key]}
+						alt={key}
+					/>
+				</div>
+			{/if}
 		{/each}
 	</div>
 	<div class="h-full w-full relative">
@@ -504,7 +520,8 @@
 					<div class="l-border l-p-t l-p-r w-full l-p-b l-p-l"
 							 style="border: 8px solid #b2771f; background: #247150; color: #ffffff; box-shadow: 2px 2px 4px #999999, 2px 2px 2px #004200 inset; padding: 15px;">
 						{#each [0, 1, 2] as i}
-							<div class="{i+1 === 1 ? 'text-amber-200' : i+1 === 2 ? 'text-slate-300' : 'text-amber-500'} flex flex-row items-end py-5 font-bold text-xl underline justify-between">
+							<div
+								class="{i+1 === 1 ? 'text-amber-200' : i+1 === 2 ? 'text-slate-300' : 'text-amber-500'} flex flex-row items-end py-5 font-bold text-xl underline justify-between">
 								<div>
 									<p>{i + 1}位</p>
 									<p class="flex items-center gap-1"><span
