@@ -1,17 +1,10 @@
 <script lang="ts">
-	import {
-		collection,
-		onSnapshot,
-		query,
-		QuerySnapshot,
-		FieldValue,
-		orderBy
-	} from 'firebase/firestore';
+	import { collection, FieldValue, onSnapshot, orderBy, query, QuerySnapshot } from 'firebase/firestore';
 	import { db } from '$lib/firebase';
 	import { Parallax, ParallaxLayer } from 'svelte-parallax';
 	import { DetectDeviceOrientation, type Orientation } from 'detect-device-orientation';
 	import { scrollRef } from 'svelte-scrolling';
-	import { Carousel, Button, Modal } from 'flowbite-svelte';
+	import { Button, Carousel, Modal } from 'flowbite-svelte';
 	import { images, mains, map, rules } from '$lib/img';
 	import pr from '$lib/img/pr.mp4';
 	import { type EasingFunction } from 'svelte/transition';
@@ -497,7 +490,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="max-w-4xl space-y-4 rotate-[-2deg] px-5">
+				<div class="max-w-4xl space-y-4 rotate-[2deg] px-5">
 					<div class="slide">
 						<Carousel images={slide} forward let:Indicators let:Controls bind:index>
 							<Controls />
@@ -738,8 +731,8 @@
             content: '';
             position: absolute;
             z-index: 10;
-            top: -1em;
-            left: -1em;
+            top: -0.5em;
+            left: -1.5em;
             width: 100px;
             height: 30px;
             background-image: linear-gradient(-45deg, rgba(227, 155, 140, .4) 25%, transparent 25%, transparent 50%, rgba(227, 155, 140, .4) 50%, rgba(227, 155, 140, .4) 75%, transparent 75%, transparent 100%);
