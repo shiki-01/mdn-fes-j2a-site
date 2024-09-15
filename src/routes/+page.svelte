@@ -65,7 +65,7 @@
 		},
 		{
 			name: 'pen-case',
-			top: '49',
+			top: '50',
 			left: '60',
 			size: '40',
 			rate: 0.2,
@@ -74,7 +74,7 @@
 		},
 		{
 			name: 'textbook',
-			top: '46',
+			top: '50',
 			left: '5',
 			size: '30',
 			rate: 0.4,
@@ -92,7 +92,7 @@
 		},
 		{
 			name: 'lunch-box',
-			top: '56',
+			top: '57',
 			left: '-10',
 			size: '60',
 			rate: 0.4,
@@ -389,28 +389,30 @@
 				</div>
 			</div>
 		</div>
-		<div class="w-full h-[calc(100svh-60px)] lg:h-[calc(100svh-70px)] sm:p-12 lg:p-[200px] flex flex-col items-center">
+		<div class="w-full h-[calc(100svh-60px+60px)] lg:h-[calc(100svh-70px+60px)] sm:p-12 lg:p-[200px] flex flex-col items-center">
 			<h1 use:scrollRef={'scoreboard'} class="text-4xl text-center pb-10 pt-[80px] before:bg-blue-300">
 				ScoreBoard
 			</h1>
 			{#if ranking}
-				<div class="flex flex-col max-w-full p-10 gap-4">
-					{#each [0, 1, 2] as i}
-						<div class="flex flex-row justify-between truncate">
-							<p>{ranking[i]?.name} さん</p>
-							<p>{ranking[i]?.score || "Error"} pt</p>
-						</div>
-					{/each}
-					{#each [3, 6] as i}
-						<div class="grid grid-cols-2 gap-4">
-							{#each [i, i + 1] as j}
-								<div class="flex flex-row justify-between gap-2">
-									<p class="truncate">{ranking[j]?.name || "Error"} さん</p>
-									<p>{ranking[j]?.score || "Error"} pt</p>
+				<div class="flex flex-col max-w-full w-full p-10 gap-4">
+					<div class="l-border l-p-t l-p-r w-full l-p-b l-p-l"
+							 style="border: 8px solid #b2771f; background: #247150; color: #ffffff; box-shadow: 2px 2px 4px #999999, 2px 2px 2px #004200 inset; padding: 15px;">
+						{#each [0, 1, 2] as i}
+							<div class="flex flex-row items-end py-5 font-bold underline justify-between">
+								<div>
+									<p>{i + 1}位</p>
+									<p class="flex items-center gap-1"><span class="inline-block max-w-[80px] truncate">{ranking[i]?.name}</span><span class="inline-block">さん</span></p>
 								</div>
-							{/each}
-						</div>
-					{/each}
+								<p>{ranking[i]?.score || "Error"} pt</p>
+							</div>
+						{/each}
+						{#each [3, 4, 5, 6] as i}
+							<div class="flex flex-row py-3 justify-between gap-2">
+								<p class="flex items-center gap-1"><span class="inline-block max-w-[80px] truncate">{ranking[i]?.name}</span><span class="inline-block">さん</span></p>
+								<p>{ranking[i]?.score || "Error"} pt</p>
+							</div>
+						{/each}
+					</div>
 				</div>
 			{/if}
 		</div>
@@ -542,7 +544,7 @@
         border: solid 3px #555;
         box-sizing: border-box;
         border-radius: 10px;
-				@apply w-[150px] sm:w-[200px];
+        @apply w-[150px] sm:w-[200px];
 
         &::before {
             content: "";
@@ -612,7 +614,7 @@
             padding: 0.25em 2em;
             color: #65513f;
             transform: rotate(-20deg);
-						@apply bg-slate-50/20;
+            @apply bg-slate-50/20;
         }
     }
 </style>
