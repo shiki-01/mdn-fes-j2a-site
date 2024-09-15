@@ -504,7 +504,7 @@
 					<div class="l-border l-p-t l-p-r w-full l-p-b l-p-l"
 							 style="border: 8px solid #b2771f; background: #247150; color: #ffffff; box-shadow: 2px 2px 4px #999999, 2px 2px 2px #004200 inset; padding: 15px;">
 						{#each [0, 1, 2] as i}
-							<div class="flex flex-row items-end py-5 font-bold underline justify-between">
+							<div class="{i+1 === 1 ? 'text-amber-200' : i+1 === 2 ? 'text-slate-300' : 'text-amber-500'} flex flex-row items-end py-5 font-bold text-xl underline justify-between">
 								<div>
 									<p>{i + 1}位</p>
 									<p class="flex items-center gap-1"><span
@@ -521,7 +521,7 @@
 							</div>
 						{/each}
 						{#each [3, 4, 5, 6] as i}
-							<div class="flex flex-row py-3 justify-between gap-2">
+							<div class="flex flex-row text-lg py-3 justify-between gap-2">
 								<p class="flex items-center gap-1"><span
 									class="inline-block max-w-[80px] truncate">{ranking[i]?.name}</span><span
 									class="inline-block">さん</span></p>

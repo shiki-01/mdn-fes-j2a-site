@@ -28,6 +28,9 @@
 			<a use:scrollTo={'home'} href="#home">
 				Home
 			</a>
+			<a use:scrollTo={'rule'} href="#rule">
+				Rule
+			</a>
 			<a use:scrollTo={'about'} href="#about">
 				About
 			</a>
@@ -51,6 +54,9 @@
 				ulClass="flex flex-wrap gap-5 items-center mb-6 text-sm text-gray-500 sm:mb-0 dark:text-gray-400">
 				<a use:scrollTo={'home'} href="#home">
 					Home
+				</a>
+				<a use:scrollTo={'rule'} href="#rule">
+					Rule
 				</a>
 				<a use:scrollTo={'about'} href="#about">
 					About
