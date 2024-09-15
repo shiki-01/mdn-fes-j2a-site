@@ -316,7 +316,7 @@
 	}
 </script>
 
-<Modal title="Terms of Service" bind:open={pvModal} autoclose>
+<Modal title="クラスPV" bind:open={pvModal} autoclose>
 	<p class="text-base leading-relaxed text-gray-500">
 		クラスPVは、生徒会ラジオや、喬徳館ステージの休憩中に放送されます！
 	</p>
@@ -455,7 +455,7 @@
 						playsinline
 					/>
 				</button>
-				<button class="text-center font-black text-lg text-slate-50 z-10">
+				<button class="text-center w-full font-black text-lg text-slate-50 z-10">
 					クラスPVを公開中！<br>
 					<span class="click">click me !</span>
 				</button>

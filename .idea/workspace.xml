@@ -5,15 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ff93c017-30b8-4e23-823d-c6e60d8a0ba1" name="変更" comment="deploy">
-      <change afterPath="$PROJECT_DIR$/src/lib/img/rule/1textbook.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lib/img/rule/2hiru.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lib/img/rule/3mato.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lib/img/rule/_kumo1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lib/img/rule/_kumo2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lib/img/rule/_kumo3.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/MovePosition.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/img/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/img/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/+page.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/+page.svelte" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -122,7 +114,7 @@
       <workItem from="1726148666587" duration="5363000" />
       <workItem from="1726269185513" duration="31000" />
       <workItem from="1726269229938" duration="30795000" />
-      <workItem from="1726358541390" duration="14486000" />
+      <workItem from="1726358541390" duration="14787000" />
     </task>
     <task id="LOCAL-00001" summary="sava">
       <option name="closed" value="true" />
@@ -276,7 +268,15 @@
       <option name="project" value="LOCAL" />
       <updated>1726377475401</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="deploy">
+      <option name="closed" value="true" />
+      <created>1726385228136</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1726385228136</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
