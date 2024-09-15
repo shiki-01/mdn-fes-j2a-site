@@ -1,8 +1,16 @@
 <script lang="ts">
 	import '../app.css';
 	import '@fontsource/zen-kurenaido';
-	import { Navbar, NavBrand, NavUl, NavHamburger } from 'flowbite-svelte';
-	import { Footer, FooterBrand, FooterCopyright, FooterLinkGroup } from 'flowbite-svelte';
+	import {
+		Footer,
+		FooterBrand,
+		FooterCopyright,
+		FooterLinkGroup,
+		Navbar,
+		NavBrand,
+		NavHamburger,
+		NavUl
+	} from 'flowbite-svelte';
 	import { scrollTo, scrollTop } from 'svelte-scrolling';
 	import { bg } from '$lib/img';
 </script>
@@ -75,9 +83,10 @@
 </div>
 
 <style lang="postcss">
-	:global(body) {
-		font-family: 'Zen Kurenaido', sans-serif;
-	}
+    :global(body) {
+        font-family: 'Zen Kurenaido', sans-serif;
+    }
+
     .main {
         background-image: linear-gradient(0deg, rgb(20, 73, 117), rgb(115, 255, 255))
     }
