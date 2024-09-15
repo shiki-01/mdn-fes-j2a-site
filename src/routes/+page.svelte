@@ -331,7 +331,7 @@
 	</svelte:fragment>
 </Modal>
 
-<div class="absolute top-0 left-0 w-full h-full pointer-events-none z-20">
+<div class="absolute top-0 left-0 max-w-[400px] w-full h-full pointer-events-none z-20">
 	<Parallax sections={points.length} config={{stiffness: 0.2, damping: 0.9}}>
 		{#each Object.entries(images) as [path, src], i}
 			<ParallaxLayer
@@ -383,7 +383,7 @@
 	</div>
 	<div class="h-full w-full relative">
 		<div
-			class="home h-[calc(100svh-60px)] lg:h-[calc(100svh-70px)] w-full p-10 sm:p-12 md:p-10 lg:p-[200px] text-center items-center">
+			class="home h-[calc(100svh-60px)] lg:h-[calc(100svh-70px)] w-full p-10 text-center items-center">
 			<h1 use:scrollRef={'home'} class="text-4xl text-center pb-10 pt-[80px] before:bg-pink-200">
 				Home
 			</h1>
@@ -408,7 +408,7 @@
 			</p>
 		</div>
 		<div
-			class="relative h-[calc(100svh-60px+100px)] lg:h-[calc(100svh-70px+100px)] w-full p-10 sm:p-12 md:p-10 lg:p-[200px] text-center items-center">
+			class="relative h-[calc(100svh-60px+100px)] lg:h-[calc(100svh-70px+100px)] w-full p-10 text-center items-center">
 			<h1 use:scrollRef={'rule'} class="text-4xl text-center pb-10 pt-[80px] before:bg-lime-200">
 				Rule
 			</h1>
@@ -451,7 +451,7 @@
 				<span class="pr-2">HINT !</span> 的のすぐ下の穴をめがけて撃つと点が入るよ！
 			</p>
 		</div>
-		<div class="w-full h-[calc(100svh-60px+400px)] lg:h-[calc(100svh-70px)] sm:p-12 lg:p-[200px] relative">
+		<div class="w-full h-[calc(100svh-60px+400px)] lg:h-[calc(100svh-70px+400px)] relative">
 			<h1 use:scrollRef={'about'} class="text-4xl text-center pb-10 pt-[80px] before:bg-amber-200">
 				About
 			</h1>
@@ -490,7 +490,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="max-w-4xl space-y-4 rotate-[2deg] px-5">
+				<div class="space-y-4 rotate-[2deg] px-5">
 					<div class="slide">
 						<Carousel images={slide} forward let:Indicators let:Controls bind:index>
 							<Controls />
@@ -504,7 +504,7 @@
 			</div>
 		</div>
 		<div
-			class="w-full h-[calc(100svh-60px+100px)] lg:h-[calc(100svh-70px+100px)] sm:p-12 lg:p-[200px] flex flex-col items-center">
+			class="w-full h-[calc(100svh-60px+100px)] lg:h-[calc(100svh-70px+100px)] flex flex-col items-center">
 			<h1 use:scrollRef={'scoreboard'} class="text-4xl text-center pb-10 pt-[80px] before:bg-blue-300">
 				ScoreBoard
 			</h1>
@@ -548,7 +548,7 @@
 				</div>
 			{/if}
 		</div>
-		<div class="w-full h-[calc(100svh-60px)] lg:h-[calc(100svh-70px)] sm:p-12 lg:p-[200px]">
+		<div class="w-full h-[calc(100svh-60px)] lg:h-[calc(100svh-70px)]">
 			<h1 use:scrollRef={'access'} class="text-4xl text-center pb-10 pt-[80px] before:bg-emerald-300">
 				Access
 			</h1>

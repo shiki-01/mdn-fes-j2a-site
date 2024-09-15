@@ -50,8 +50,10 @@
 			</a>
 		</NavUl>
 	</Navbar>
-	<div class="main pt-[60px] lg:pt-[70px] w-full">
-		<slot />
+	<div class="main flex justify-center w-full">
+		<div class="max-w-[400px] pt-[60px] lg:pt-[70px] relative">
+			<slot />
+		</div>
 	</div>
 	<Footer footerType="logo" class="dark">
 		<div class="sm:flex sm:items-center sm:justify-between">
