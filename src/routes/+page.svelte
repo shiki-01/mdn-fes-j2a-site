@@ -211,16 +211,16 @@
 		},
 		{
 			top: '20%',
-			left: 'calc(100vw - 180px)',
+			left: 'calc(100vw - 180px)'
 		},
 		{
 			top: '40%',
-			left: '0%',
+			left: '0%'
 		},
 		{
 			top: '80%',
-			left: '40%',
-		},
+			left: '40%'
+		}
 	];
 
 	type Animation = {
@@ -285,6 +285,10 @@
 		});
 	});
 
+	$: if (ranking) {
+		ranking.sort((a, b) => (b.score || 0) - (a.score || 0));
+	}
+
 	let imageX = 0;
 	let imageY = 0;
 
@@ -326,7 +330,7 @@
 			src={pr}
 			controls
 		>
-			<track kind="captions"  src={pr} />
+			<track kind="captions" src={pr} />
 		</video>
 	</div>
 	<svelte:fragment slot="footer">
@@ -396,7 +400,7 @@
 		</div>
 		<div
 			class="relative h-[calc(100svh-60px+100px)] lg:h-[calc(100svh-70px+100px)] w-full p-10 sm:p-12 md:p-10 lg:p-[200px] text-center items-center">
-			<h1 use:scrollRef={'rule'} class="text-4xl text-center pb-10 pt-[80px] before:bg-pink-200">
+			<h1 use:scrollRef={'rule'} class="text-4xl text-center pb-10 pt-[80px] before:bg-lime-200">
 				Rule
 			</h1>
 			<div class="">
@@ -407,7 +411,9 @@
 					それぞれの時間帯にある "正しい的" を撃ち抜きましょう！
 				</p>
 				<p class="marker text-lg py-6">
-					的は一個 100 点、<br>全部で 9 個隠れています！
+					<span>的は一個 100 点、</span>
+					<br>
+					<span>全部で 9 個隠れています！</span>
 				</p>
 			</div>
 			<div class="grid grid-cols-3 gap-4">
@@ -425,7 +431,8 @@
 							</div>
 						</div>
 					{:else}
-						<div class="absolute opacity-50 z-[0] mix-blend-soft-light" style="top: {rule[i].top}; left: {rule[i].left};">
+						<div class="absolute opacity-50 z-[0] mix-blend-soft-light"
+								 style="top: {rule[i].top}; left: {rule[i].left};">
 							<img src={src.default} alt={path} class="" />
 						</div>
 					{/if}
@@ -504,7 +511,13 @@
 										class="inline-block max-w-[80px] truncate">{ranking[i]?.name}</span><span
 										class="inline-block">さん</span></p>
 								</div>
-								<p>{ranking[i]?.score || "Error"} pt</p>
+								<p>
+									{#if ranking[i]?.score === 0}
+										0 pt
+									{:else}
+										{ranking[i]?.score || "Error"} pt
+									{/if}
+								</p>
 							</div>
 						{/each}
 						{#each [3, 4, 5, 6] as i}
@@ -512,7 +525,13 @@
 								<p class="flex items-center gap-1"><span
 									class="inline-block max-w-[80px] truncate">{ranking[i]?.name}</span><span
 									class="inline-block">さん</span></p>
-								<p>{ranking[i]?.score || "Error"} pt</p>
+								<p>
+									{#if ranking[i]?.score === 0}
+										0 pt
+									{:else}
+										{ranking[i]?.score || "Error"} pt
+									{/if}
+								</p>
 							</div>
 						{/each}
 					</div>
@@ -584,6 +603,22 @@
         left: 100px;
         clip-path: polygon(0 0, 100% 0, 80% 100%);
         @apply bg-amber-300 w-20 h-20;
+    }
+
+    .marker span {
+        position: relative;
+        z-index: 1;
+
+        &::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 10px;
+            bottom: 0;
+            left: -5px;
+            z-index: -1;
+            @apply bg-red-300/60;
+        }
     }
 
     .main {
