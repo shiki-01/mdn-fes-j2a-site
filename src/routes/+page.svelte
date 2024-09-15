@@ -5,17 +5,35 @@
 		query,
 		QuerySnapshot,
 		FieldValue,
-		orderBy,
+		orderBy
 	} from 'firebase/firestore';
 	import { db } from '$lib/firebase';
 	import { Parallax, ParallaxLayer } from 'svelte-parallax';
 	import { DetectDeviceOrientation, type Orientation } from 'detect-device-orientation';
 	import { scrollRef } from 'svelte-scrolling';
+	import { Carousel } from 'flowbite-svelte';
 	import { images, mains, map } from '$lib/img';
 	import pr from '$lib/img/pr.mp4';
 	import { type EasingFunction } from 'svelte/transition';
 	import { quintOut } from 'svelte/easing';
 	import { tweened } from 'svelte/motion';
+
+	let index = 0;
+
+	const slide = [
+		{
+			src: 'https://placehold.jp/300x150.png'
+		},
+		{
+			src: 'https://placehold.jp/300x150.png'
+		},
+		{
+			src: 'https://placehold.jp/300x150.png'
+		},
+		{
+			src: 'https://placehold.jp/300x150.png'
+		}
+	];
 
 	const points = [
 		{
@@ -29,7 +47,7 @@
 		},
 		{
 			name: 'switch',
-			top: '27',
+			top: '33',
 			left: '28',
 			size: '45',
 			rate: 0.2,
@@ -47,7 +65,7 @@
 		},
 		{
 			name: 'pen-case',
-			top: '43',
+			top: '49',
 			left: '60',
 			size: '40',
 			rate: 0.2,
@@ -56,7 +74,7 @@
 		},
 		{
 			name: 'textbook',
-			top: '40',
+			top: '46',
 			left: '5',
 			size: '30',
 			rate: 0.4,
@@ -74,7 +92,7 @@
 		},
 		{
 			name: 'lunch-box',
-			top: '50',
+			top: '56',
 			left: '-10',
 			size: '60',
 			rate: 0.4,
@@ -119,7 +137,7 @@
 		},
 		{
 			name: 'pencil',
-			top: '30',
+			top: '38',
 			left: '65',
 			size: '40',
 			rate: 0.5,
@@ -299,27 +317,30 @@
 	</div>
 	<div class="h-full w-full relative">
 		<div
-			class="h-[calc(100svh-60px)] lg:h-[calc(100svh-70px)] w-full p-10 sm:p-12 md:p-10 lg:p-[200px] text-center items-center">
-			<h1 use:scrollRef={'home'} class="text-4xl text-center pb-10 pt-[80px]">
+			class="home h-[calc(100svh-60px)] lg:h-[calc(100svh-70px)] w-full p-10 sm:p-12 md:p-10 lg:p-[200px] text-center items-center">
+			<h1 use:scrollRef={'home'} class="text-4xl text-center pb-10 pt-[80px] before:bg-pink-200">
 				Home
 			</h1>
-			<p class="py-4">
+			<span />
+			<span />
+			<span />
+			<p class="p-2 my-4 border-x-4 border-sky-50">
 				「辰巳のアストロブラスター」は、ディズニーの とあるアトラクションから着想を得た
 				「トロッコに乗って的を撃ち抜く」ゲームだ！
 			</p>
-			<p class="py-4">
+			<p class="p-2 my-4 border-x-4 border-sky-50">
 				情報科ならではの特別公式サイトや レーザーポインターを用いた本格的な射撃ギミック、
 				さらにサイト内でリアルタイムで更新される順位表も存在！
 			</p>
-			<p class="py-4">
+			<p class="p-2 my-4 border-x-4 border-sky-50">
 				キミも「辰巳のアストロブラスター」に参加して歴史に名を刻め！
 			</p>
 		</div>
-		<div class="w-full h-[calc(100svh-60px)] lg:h-[calc(100svh-70px)] sm:p-12 lg:p-[200px] relative">
-			<h1 use:scrollRef={'about'} class="text-4xl text-center pb-10 pt-[80px]">
+		<div class="w-full h-[calc(100svh-60px+400px)] lg:h-[calc(100svh-70px)] sm:p-12 lg:p-[200px] relative">
+			<h1 use:scrollRef={'about'} class="text-4xl text-center pb-10 pt-[80px] before:bg-amber-200">
 				About
 			</h1>
-			<div class="w-[300px] absolute top-[10em] right-[-4em] rotate-6 flex flex-col">
+			<div class="w-[300px] absolute top-[10em] right-[-4em] rotate-6 flex flex-col cursor-pointer">
 				<div
 					class="rounded-lg overflow-hidden shadow-2xl shadow-slate-900/50">
 					<video
@@ -332,12 +353,39 @@
 					/>
 				</div>
 				<p class="text-center font-black text-lg text-slate-50 z-10">
-					クラスPVを公開中！
+					クラスPVを公開中！<br>
+					<span class="click">click me !</span>
 				</p>
+			</div>
+			<div class="pt-[250px] px-4 space-y-10">
+				<div class="flex flex-row gap-4">
+					<div class="main">
+						<img src={mains.main} alt="main" class="w-[150px] rounded-full" />
+					</div>
+					<div class="flex flex-col pr-4 pt-5">
+						<div class="fuKi">
+							<p>ここに何入れればいいかわかんないね！！！</p>
+						</div>
+						<div class="fuKi">
+							<p>そうだね！！！</p>
+						</div>
+					</div>
+				</div>
+				<div class="max-w-4xl space-y-4 rotate-[-2deg] px-5">
+					<div class="slide">
+						<Carousel images={slide} forward let:Indicators let:Controls bind:index>
+							<Controls />
+							<Indicators />
+						</Carousel>
+					</div>
+					<p class="text-center text-lg font-bold pt-4">
+						ドキドキとワクワクの冒険が<br>君を待っている！
+					</p>
+				</div>
 			</div>
 		</div>
 		<div class="w-full h-[calc(100svh-60px)] lg:h-[calc(100svh-70px)] sm:p-12 lg:p-[200px] flex flex-col items-center">
-			<h1 use:scrollRef={'scoreboard'} class="text-4xl text-center pb-10 pt-[80px]">
+			<h1 use:scrollRef={'scoreboard'} class="text-4xl text-center pb-10 pt-[80px] before:bg-blue-300">
 				ScoreBoard
 			</h1>
 			{#if ranking}
@@ -362,7 +410,7 @@
 			{/if}
 		</div>
 		<div class="w-full h-[calc(100svh-60px)] lg:h-[calc(100svh-70px)] sm:p-12 lg:p-[200px]">
-			<h1 use:scrollRef={'access'} class="text-4xl text-center pb-10 pt-[80px]">
+			<h1 use:scrollRef={'access'} class="text-4xl text-center pb-10 pt-[80px] before:bg-emerald-300">
 				Access
 			</h1>
 			<div class="w-full p-2 flex flex-col gap-6 justify-center items-center">
@@ -374,3 +422,191 @@
 		</div>
 	</div>
 </section>
+
+<style lang="postcss">
+    h1 {
+        position: relative;
+        z-index: 1;
+    }
+
+    h1::before {
+        content: '';
+        position: absolute;
+        bottom: 35px;
+        left: 50%;
+        width: 120px;
+        height: 40px;
+        transform: translateX(-50%) scale(1, -1) rotate(-2deg);
+        clip-path: polygon(0 0, 80% 0, 100% 100%);
+        opacity: 80%;
+        z-index: -1;
+    }
+
+    .home {
+        position: relative;
+        z-index: 1;
+    }
+
+    .home span::before {
+        content: '';
+        position: absolute;
+        opacity: 50%;
+        z-index: -1;
+    }
+
+    .home span:nth-child(2)::before {
+        top: 220px;
+        left: 50px;
+        clip-path: circle(50% at 50% 50%);
+        @apply bg-emerald-200 w-[90px] h-[90px];
+    }
+
+    .home span:nth-child(3)::before {
+        top: 350px;
+        left: 220px;
+        clip-path: inset(0, 0, 0, 0);
+        transform: rotate(20deg);
+        @apply bg-blue-300 w-[100px] h-[100px];
+    }
+
+    .home span:nth-child(4)::before {
+        top: 500px;
+        left: 100px;
+        clip-path: polygon(0 0, 100% 0, 80% 100%);
+        @apply bg-amber-300 w-20 h-20;
+    }
+
+    .main {
+        position: relative;
+        z-index: 1;
+
+        &::before {
+            content: '';
+            position: absolute;
+            bottom: 15px;
+            left: 10px;
+            width: 140px;
+            height: 140px;
+            z-index: 0;
+            @apply bg-sky-400 rounded-full;
+        }
+    }
+
+    .main img {
+        position: relative;
+        z-index: 1;
+    }
+
+    .click {
+        position: relative;
+
+        &::before {
+            content: "";
+            position: absolute;
+            top: 5px;
+            left: -12px;
+            width: 2px;
+            height: 80%;
+            z-index: 2;
+            rotate: 20deg;
+            @apply bg-sky-200;
+        }
+
+        &::after {
+            content: "";
+            position: absolute;
+            top: 6px;
+            right: -12px;
+            width: 2px;
+            height: 80%;
+            z-index: 2;
+            rotate: -20deg;
+            @apply bg-sky-200;
+        }
+    }
+
+    .fuKi {
+        position: relative;
+        display: inline-block;
+        margin: 1em 0 1em 15px;
+        padding: 7px 10px;
+        width: 200px;
+        color: #555;
+        font-size: 16px;
+        background: #FFF;
+        border: solid 3px #555;
+        box-sizing: border-box;
+        border-radius: 10px;
+
+        &::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: -24px;
+            margin-top: -12px;
+            border: 12px solid transparent;
+            border-right: 12px solid #FFF;
+            z-index: 2;
+        }
+
+        &::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: -30px;
+            margin-top: -14px;
+            border: 14px solid transparent;
+            border-right: 14px solid #555;
+            z-index: 1;
+        }
+    }
+
+    .fuKi p {
+        margin: 0;
+        padding: 0;
+        z-index: 3;
+    }
+
+    .slide {
+        position: relative;
+        z-index: 1;
+
+        &::before {
+            content: '';
+            position: absolute;
+            z-index: 10;
+            top: -1em;
+            left: -1em;
+            width: 100px;
+            height: 30px;
+            background-image: linear-gradient(-45deg, rgba(227, 155, 140, .4) 25%, transparent 25%, transparent 50%, rgba(227, 155, 140, .4) 50%, rgba(227, 155, 140, .4) 75%, transparent 75%, transparent 100%);
+            background-size: 20px 20px;
+            border-left: 2px dotted rgba(0, 0, 0, .1);
+            border-right: 2px dotted rgba(0, 0, 0, .1);
+            box-shadow: 0 0 5px rgba(0, 0, 0, .2);
+            padding: 0.25em 2em;
+            color: #65513f;
+            transform: rotate(-20deg);
+            @apply bg-slate-50/20;
+        }
+
+        &::after {
+            content: '';
+            position: absolute;
+            z-index: 10;
+            bottom: -0.5em;
+            right: -1em;
+            width: 100px;
+            height: 30px;
+            background-image: linear-gradient(-45deg, rgba(227, 155, 140, .4) 25%, transparent 25%, transparent 50%, rgba(227, 155, 140, .4) 50%, rgba(227, 155, 140, .4) 75%, transparent 75%, transparent 100%);
+            background-size: 20px 20px;
+            border-left: 2px dotted rgba(0, 0, 0, .1);
+            border-right: 2px dotted rgba(0, 0, 0, .1);
+            box-shadow: 0 0 5px rgba(0, 0, 0, .2);
+            padding: 0.25em 2em;
+            color: #65513f;
+            transform: rotate(-20deg);
+						@apply bg-slate-50/20;
+        }
+    }
+</style>

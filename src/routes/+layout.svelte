@@ -7,7 +7,7 @@
 	import { bg } from '$lib/img';
 </script>
 
-<div class="w-screen h-screen fixed top-0 left-0 z-30 mix-blend-soft-light">
+<div class="w-screen h-screen fixed top-0 left-0 z-30 mix-blend-soft-light pointer-events-none">
 	<img src={bg} class="w-full h-[100vh] object-cover opacity-20" alt="bg" />
 </div>
 
