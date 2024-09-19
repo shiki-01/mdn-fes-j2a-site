@@ -38,7 +38,7 @@
 			try {
 				const bytes = AES.decrypt(co, key);
 				result = bytes.toString(Utf8);
-				if (!/^(0|[1-9]00)$/.test(result)) result = null;
+				if (!/^(0|\d*00)$/.test(result)) result = null;
 			} catch (error) {
 				console.error('Decryption failed:', error);
 				result = null;
