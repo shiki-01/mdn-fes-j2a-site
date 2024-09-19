@@ -5,7 +5,7 @@
 	import { DetectDeviceOrientation, type Orientation } from 'detect-device-orientation';
 	import { scrollRef } from 'svelte-scrolling';
 	import { Button, Carousel, Modal } from 'flowbite-svelte';
-	import { images, mains, map, rules } from '$lib/img';
+	import { homes, images, mains, map, rules } from '$lib/img';
 	import pr from '$lib/img/pr.mp4';
 	import { type EasingFunction } from 'svelte/transition';
 	import { quintOut } from 'svelte/easing';
@@ -15,20 +15,13 @@
 
 	let pvModal = false;
 
-	const slide = [
-		{
-			src: 'https://placehold.jp/300x150.png'
-		},
-		{
-			src: 'https://placehold.jp/300x150.png'
-		},
-		{
-			src: 'https://placehold.jp/300x150.png'
-		},
-		{
-			src: 'https://placehold.jp/300x150.png'
+	console.log(homes);
+
+	const slide = Object.keys(homes).map((key) => {
+		return {
+			src: homes[key].default
 		}
-	];
+	});
 
 	const points = [
 		{
@@ -422,7 +415,7 @@
 				<p class="marker text-lg py-6">
 					<span>的は一個 100 点、</span>
 					<br>
-					<span>全部で 9 個隠れています！</span>
+					<span>全部で 8 個隠れています！</span>
 				</p>
 			</div>
 			<div class="grid grid-cols-3 gap-4">
